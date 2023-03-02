@@ -1,0 +1,2 @@
+class TripPlanDetail < ApplicationRecord
+end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_03_01_154228) do
+ActiveRecord::Schema.define(version: 2023_03_02_141040) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -94,19 +94,26 @@ ActiveRecord::Schema.define(version: 2023_03_01_154228) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "trip_plans", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.string "tatle_name", null: false
-    t.integer "schedule", null: false
-    t.integer "number_day", null: false
-    t.integer "budget", null: false
+  create_table "trip_plan_details", force: :cascade do |t|
+    t.integer "trip_plan_id", null: false
     t.integer "hour", null: false
     t.integer "minute", null: false
     t.string "category", null: false
     t.integer "what_day", null: false
     t.string "destination", null: false
     t.integer "price", null: false
-    t.integer "status", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "trip_plans", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "title_name", null: false
+    t.integer "first_schedule", null: false
+    t.integer "second_schedule", null: false
+    t.integer "number_day", null: false
+    t.integer "budget", null: false
+    t.boolean "status", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
