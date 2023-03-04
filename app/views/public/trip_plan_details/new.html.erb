@@ -1,0 +1,34 @@
+<div class="container">
+
+  <%= form_with model: @trip_plan_detail, url: trip_plan_details_path, method: :post do |f| %>
+  <div class="row">
+    <div><p>時間</p></div>
+    <div><%= f.text_field :hour %></div>
+    <div><%= f.text_field :minute %></div>
+  </div>
+
+  <div class="row">
+    <div><p>カテゴリー</p></div>
+    <div><%= f.select :category, [['食事',1], ['移動',2], ['遊び',3], ['ホテル',4]] %></div>
+  </div>
+
+  <div class="row">
+    <div><p>日数</p></div>
+    <div><%= f.text_field :what_day %>日目</div>
+  </div>
+
+  <div class="row">
+    <div><p>行先</p></div>
+    <div><%= f.text_field :destination %></div>
+  </div>
+
+  <div class="row">
+    <div><p>予算</p></div>
+    <div><%= f.text_field :price %></div>
+  </div>
+
+  <div><%= f.submit '登録', class: "btn btn-success" %></div>
+
+  <% end %>
+
+</div>

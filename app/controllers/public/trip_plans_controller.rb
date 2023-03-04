@@ -10,6 +10,10 @@ class Public::TripPlansController < ApplicationController
     redirect_to new_trip_plan_detail_path
   end
 
+  def index
+    @trip_plan = TripPlan.find(params[:id])
+  end
+
   private
   def trip_plan_params
     params.require(:trip_plan).permit(:user_id, :title_name, :first_month, :first_day, :second_month, :second_day, :number_day, :budget, :status)

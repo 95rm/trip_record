@@ -7,6 +7,11 @@ class User < ApplicationRecord
 
   has_one_attached :profile_image
 
+  belongs_to :trip_plan
+  belongs_to :like
+  belongs_to :comment
+  #belongs_to :フォロー機能のアソシエーション記述まだしてない
+
   def get_profile_image(width, height)
    profile_image.variant(resize_to_limit: [width, height]).processed
   end
