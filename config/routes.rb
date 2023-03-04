@@ -6,7 +6,13 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root to: 'homes#top'
-    resources :trip_plans, only: [:new, :create, :index, :edit, :update, :destroy]do
+    resources :trip_plans, only: [:new, :create, :index, :edit, :update]do
+      collection do
+        get :research
+      end
+    end
+
+    resources :trip_plan_details, only: [:new, :create]do
     end
 
     get '/users' => 'users#index'
@@ -39,6 +45,11 @@ devise_for :user, controllers: {
   registrations: "public/registrations",
   sessions: 'public/sessions'
 }
+
+#ゲストログイン機能
+devise_scope :user do
+  post 'users/guest_sign_in', to: 'public/sessions#guest_sign_in'
+end
 
 
 

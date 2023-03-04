@@ -109,8 +109,10 @@ ActiveRecord::Schema.define(version: 2023_03_02_141040) do
   create_table "trip_plans", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "title_name", null: false
-    t.integer "first_schedule", null: false
-    t.integer "second_schedule", null: false
+    t.integer "first_month", null: false
+    t.integer "first_day", null: false
+    t.integer "second_month", null: false
+    t.integer "second_day", null: false
     t.integer "number_day", null: false
     t.integer "budget", null: false
     t.boolean "status", default: false, null: false
@@ -127,7 +129,6 @@ ActiveRecord::Schema.define(version: 2023_03_02_141040) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "account_name", null: false
-    t.string "user_name", null: false
     t.boolean "is_deleted", default: false, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

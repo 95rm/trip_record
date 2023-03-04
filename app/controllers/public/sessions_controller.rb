@@ -20,6 +20,21 @@ class Public::SessionsController < Devise::SessionsController
 
   # protected
 
+  def after_sign_in_path_for(resource) #ログインした後のページ先設定
+    users_my_page_path
+  end
+
+  def after_sign_out_path_for(resource) #ログアウトした後のページ先設定
+    new_user_session_path
+  end
+
+  #以下ゲストログイン機能実装コード
+  def guest_sign_in
+    user = User.guest
+    sign_in user
+    redirect_to users_my_page_path, notice: 'ゲストユーザーとしてログインしました。'
+  end
+
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
