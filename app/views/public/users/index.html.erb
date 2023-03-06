@@ -1,0 +1,11 @@
+<div class="container">
+
+  <% @trip_plans.each do |trip_plan| %>
+  <div class="row">
+    <span>
+      <td><%= link_to f.title_name, trip_plan_path(trip_plan.id) %></td>
+    </span>
+  </div>
+  <% end %>
+
+</div>

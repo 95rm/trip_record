@@ -1,5 +1,45 @@
 <div class="container">
 
-  <%= @trip_plan.title_name %>
+<div class="row">
+ <p>旅行タイトル</p>
+ <div class="col-3"><%= @trip_plan.title_name %></div>
+</div>
+
+<div class="row">
+   <p>旅の予算</p>
+   <div class="col-3"><%= @trip_plan.budget %>円</div>
+
+   <p>合計金額</p>
+   <% @trip_plan_detail.each do |f| %>
+    <div class="col-3"><%= @total += f.price %>円</div>
+   <% end %>
+
+   <p>差額</p>
+   <div class="col-3"><%= @calculation_result = @trip_plan.budget - @total %>円</div>
+</div>
+
+ <table class="table">
+   <thead>
+     <tr>
+       <th>時間</th>
+       <th>場所</th>
+       <th>詳細ボタン</th>
+     </tr>
+   </thead>
+   <% @trip_plan_detail.each do |f| %>
+   <tbody>
+     <tr>
+       <td><%= f.hour %>:<%= f.minute %>~</td>
+       <td><%= f.category %><% f.destination %></td>
+       <td><%= link_to "詳細", review_path, class: "btn btn-success" %></td>
+     </tr>
+   </tbody>
+   <% end %>
+ </table>
+
+ <div class="row">
+   <%= link_to "編集(1)", edit_trip_plan_path, class: "btn btn-success" %>
+
+ </div>
 
 </div>

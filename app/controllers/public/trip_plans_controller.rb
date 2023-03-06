@@ -13,6 +13,8 @@ class Public::TripPlansController < ApplicationController
 
   def show
     @trip_plan = TripPlan.find(params[:id])
+    @trip_plan_detail = @trip_plan.trip_plan_details
+    @total = 0
   end
 
   private
