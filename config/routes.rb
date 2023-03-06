@@ -6,14 +6,14 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root to: 'homes#top'
-    resources :trip_plans, only: [:new, :create, :index, :edit, :update]do
+    resources :trip_plans, only: [:new, :create, :show, :edit, :update]do
       collection do
         get :research
       end
+      resources :trip_plan_details, only: [:new, :create]do #trip_plan_detailをネストさせている（trip_planの投稿に紐づけさせるため）
+      end
     end
 
-    resources :trip_plan_details, only: [:new, :create]do
-    end
 
     get '/users' => 'users#index'
     get '/users/my_page' => 'users#show'

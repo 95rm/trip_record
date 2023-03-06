@@ -6,11 +6,12 @@ class Public::TripPlansController < ApplicationController
 
   def create
     @trip_plan = TripPlan.new(trip_plan_params)
+    @trip_plan.user_id = current_user.id
     @trip_plan.save
-    redirect_to new_trip_plan_detail_path
+    redirect_to new_trip_plan_trip_plan_detail_path(@trip_plan)
   end
 
-  def index
+  def show
     @trip_plan = TripPlan.find(params[:id])
   end
 
