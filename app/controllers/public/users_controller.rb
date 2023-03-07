@@ -1,8 +1,11 @@
 class Public::UsersController < ApplicationController
 
   def index
-    @user = User.all
-    @trip_plans = @user.trip_plans
+    @trip_plans = TripPlan.all
+  end
+
+  def show
+    @user = current_user
   end
 
   def user_params

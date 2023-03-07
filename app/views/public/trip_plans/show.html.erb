@@ -26,11 +26,11 @@
        <th>詳細ボタン</th>
      </tr>
    </thead>
-   <% @trip_plan_detail.each do |f| %>
+   <% @trip_plan_detail.each do |t| %>
    <tbody>
      <tr>
-       <td><%= f.hour %>:<%= f.minute %>~</td>
-       <td><%= f.category %><% f.destination %></td>
+       <td><%= t.hour %>:<%= t.minute %>~</td>
+       <td><%= t.category %> <%= link_to t.destination, edit_trip_plan_trip_plan_detail_path(t.id) %></td>
        <td><%= link_to "詳細", review_path, class: "btn btn-success" %></td>
      </tr>
    </tbody>

@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       collection do
         get :research
       end
-      resources :trip_plan_details, only: [:new, :create, :index, :update]do #trip_plan_detailをネストさせている（trip_planの投稿に紐づけさせるため）
+      resources :trip_plan_details, only: [:new, :create, :edit, :update]do #trip_plan_detailをネストさせている（trip_planの投稿に紐づけさせるため）
       end
     end
 

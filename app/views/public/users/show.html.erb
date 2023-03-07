@@ -1,20 +1,29 @@
 <div class="container">
   <p>マイページ</p>
 
-  <div class="row">
+  <%= @user.account_name %>
+
+  <div><p>旅行計画投稿一覧</p></div>
+  <%# @trip_plans.each do |t| %>
+   <%#= t.title_name %>
+  <%# end %>
+
+
+  <div class="row justify-content-center">
    <%= link_to users_path do %>
-    <i class="fas fa-pencil-alt"></i>
+    <i class="fas fa-pencil-alt fa-2x"></i>
    <% end %>
    <%= link_to research_trip_plans_path do %>
-    <i class="fab fa-sistrix"></i>
+    <i class="fab fa-sistrix fa-2x"></i>
    <% end %>
    <%= link_to new_trip_plan_path do %>
-    <i class="fas fa-plus"></i>
+    <i class="fas fa-plus fa-2x"></i>
    <% end %>
-   <%= link_to users_my_page_path do %>
-    <i class="fas fa-home"></i>
+    <i class="fas fa-home fa-2x"></i>
    <% end %>
   </div>
 
-  <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-danger" %>
+  <div class="row justify-content-center">
+   <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-danger" %>
+  </div>
 </div>

@@ -17,6 +17,10 @@ class Public::TripPlansController < ApplicationController
     @total = 0
   end
 
+  def research
+    @q = TripPlan.ransack(params[:q])
+  end
+
   private
   def trip_plan_params
     params.require(:trip_plan).permit(:user_id, :title_name, :first_month, :first_day, :second_month, :second_day, :number_day, :budget, :status)
