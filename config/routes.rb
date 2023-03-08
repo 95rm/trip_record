@@ -14,15 +14,16 @@ Rails.application.routes.draw do
       end
     end
 
-
     get '/users' => 'users#index'
-    get '/users/my_page' => 'users#show'
+    get '/users/my_page' => 'users#my_page'
     get '/users/information/edit' => 'user#edit'
     patch '/users/information' => 'users#pudate'
     get '/users/stop' => 'users#stop'
     patch '/users/withdraw' => 'users#withdraw'
     get '/users/:id/follows' => 'users#follow'
     get '/users/:id/followers' => 'users#follower'
+
+    resources :users, only: [:show]
 
     resources :reviews, only: [:show, :edit, :update]do
     end

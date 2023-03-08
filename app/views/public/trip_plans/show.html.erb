@@ -22,24 +22,31 @@
    <thead>
      <tr>
        <th>時間</th>
+       <th>カテゴリー</th>
        <th>場所</th>
        <th>詳細ボタン</th>
+       <th>変更ボタン</th>
      </tr>
    </thead>
    <% @trip_plan_detail.each do |t| %>
    <tbody>
      <tr>
        <td><%= t.hour %>:<%= t.minute %>~</td>
-       <td><%= t.category %> <%= link_to t.destination, edit_trip_plan_trip_plan_detail_path(t.id) %></td>
+       <td><%= t.category %></td>
+       <td> <%= t.destination %></td>
        <td><%= link_to "詳細", review_path, class: "btn btn-success" %></td>
+       <td><%= link_to "変更", edit_trip_plan_trip_plan_detail_path(t.trip_plan_id, t.id), class: "btn btn-success" %>
      </tr>
    </tbody>
    <% end %>
  </table>
 
  <div class="row">
-   <%= link_to "編集(1)", edit_trip_plan_path, class: "btn btn-success" %>
-
+   <%= link_to "編集", edit_trip_plan_path, class: "btn btn-success" %>
+   <%#= link_to "追加", new_trip_plan_trip_plan_detail_path, class: "btn btn-success" %>
+   <%= link_to users_my_page_path do %>
+    <i class="fas fa-home fa-2x"></i>
+   <% end %>
  </div>
 
 </div>

@@ -1,0 +1,30 @@
+<div class="container">
+
+  <%= form_with model: @trip_plan, url: trip_plan_path, method: :patch do |t| %>
+  <div class="row">
+    <p>旅行タイトル名</p>
+    <div class="col-3"><%= t.text_field :title_name %></div>
+  </div>
+
+  <div class="row">
+    <p>日程</p>
+    <div class="col-7"><%= t.text_field :first_month, class:"col-1" %>月<%= t.text_field :first_day, class:"col-1" %>日　～　<%= t.text_field :second_month, class:"col-1" %>月<%= t.text_field :second_day, class:"col-1" %>日</div>
+  </div>
+
+  <div class="row">
+    <p>日数</p>
+    <div class="col-7"><%= t.text_field :number_day, class:"col-1" %>日</div>
+  </div>
+
+  <div class="row">
+    <p>旅の予算</p>
+    <div class="col-7"><%= t.text_field :budget, class:"col-2" %>円</div>
+  </div>
+
+  <div class="row">
+    <%= t.submit '登録', class: "btn btn-success" %>
+  </div>
+
+  <% end %>
+
+</div>

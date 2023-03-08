@@ -21,6 +21,16 @@ class Public::TripPlansController < ApplicationController
     @q = TripPlan.ransack(params[:q])
   end
 
+  def edit
+    @trip_plan = TripPlan.find(params[:id])
+  end
+
+  def update
+    @trip_plan = TripPlan.find(params[:id])
+    @trip_plan.update(trip_plan_params)
+    redirect_to trip_plan_path(@trip_plan.id)
+  end
+
   private
   def trip_plan_params
     params.require(:trip_plan).permit(:user_id, :title_name, :first_month, :first_day, :second_month, :second_day, :number_day, :budget, :status)

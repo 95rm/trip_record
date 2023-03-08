@@ -5,7 +5,14 @@ class Public::UsersController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:id])
+    @trip_plans =  @user.trip_plans
+    #byebug
+  end
+
+  def my_page
     @user = current_user
+    @trip_plans =  @user.trip_plans
   end
 
   def user_params

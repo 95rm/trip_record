@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 2023_03_02_141040) do
     t.integer "tag_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["trip_plan_id", "tag_id"], name: "index_relation_tags_on_trip_plan_id_and_tag_id", unique: true
   end
 
   create_table "relationships", force: :cascade do |t|
