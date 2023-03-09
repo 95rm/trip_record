@@ -7,7 +7,12 @@ class Public::TripPlansController < ApplicationController
   def create
     @trip_plan = TripPlan.new(trip_plan_params)
     @trip_plan.user_id = current_user.id
-    @trip_plan.save
+    @tag_list = params[:trip_plan][:name_tag].split(nil)
+    if @trip_plan.save
+      @trip_plan.save_tag(@tag_list)
+    else
+      render :new
+    end
     redirect_to new_trip_plan_trip_plan_detail_path(@trip_plan)
   end
 
@@ -19,6 +24,7 @@ class Public::TripPlansController < ApplicationController
 
   def research
     @q = TripPlan.ransack(params[:q])
+    @trip_plans = @q.result
   end
 
   def edit
@@ -26,9 +32,19 @@ class Public::TripPlansController < ApplicationController
   end
 
   def update
+    @trip_plan = TripPlan.find(params[:id])#idで保存したいデータを呼び出す
+    if @trip_plan.update(trip_plan_params)#trip_planのデータを保存する
+      @trip_plan.save_tags(params[:trip_plan][:name_tag])#タグのデータを保存する
+      redirect_to trip_plan_path(@trip_plan.id)#showページに飛ぶ
+    else
+      render :edit
+    end
+  end
+
+  def destroy
     @trip_plan = TripPlan.find(params[:id])
-    @trip_plan.update(trip_plan_params)
-    redirect_to trip_plan_path(@trip_plan.id)
+    @trip_plan.destroy
+    redirect_to users_my_page_path
   end
 
   private

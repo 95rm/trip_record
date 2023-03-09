@@ -39,11 +39,16 @@
      </tr>
    </tbody>
    <% end %>
+
+   <% @trip_plan.tags.each do |tag| %>
+    <%= tag.name_tag %>
+   <% end %>
+
  </table>
 
  <div class="row">
    <%= link_to "編集", edit_trip_plan_path, class: "btn btn-success" %>
-   <%#= link_to "追加", new_trip_plan_trip_plan_detail_path, class: "btn btn-success" %>
+   <%= link_to "削除", trip_plan_path(@trip_plan.id), method: :delete, class: "btn btn-danger", "data-confirm" => "本当に消しますか？" %>
    <%= link_to users_my_page_path do %>
     <i class="fas fa-home fa-2x"></i>
    <% end %>

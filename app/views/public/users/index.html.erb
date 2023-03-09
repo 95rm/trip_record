@@ -2,7 +2,7 @@
 
   <% @trip_plans.each do |trip_plan| %>
   <div class="row">
-    <%= link_to trip_plan.title_name, trip_plan_path(trip_plan.id) %>
+    ・<%= link_to trip_plan.title_name, trip_plan_path(trip_plan.id) %>
   </div>
   <% end %>
 

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root to: 'homes#top'
-    resources :trip_plans, only: [:new, :create, :show, :edit, :update]do
+    resources :trip_plans, only: [:new, :create, :show, :edit, :update, :destroy]do
       collection do
         get :research
       end
