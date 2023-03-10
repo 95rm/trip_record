@@ -3,6 +3,22 @@
 <div class="row">
  <p>旅行タイトル</p>
  <div class="col-3"><%= @trip_plan.title_name %></div>
+
+ <%#いいね機能実装%>
+ <% if @trip_plan.favorited_by?(current_user) %>
+  <p>
+   <%= link_to trip_plan_likes_path(@trip_plan), method: :delete do %>
+    ♥ : <%= @trip_plan.likes.count %>
+   <% end %>
+  </p>
+  <% else %>
+  <p>
+   <%= link_to trip_plan_likes_path(@trip_plan), method: :post do %>
+    ♡ : <%= @trip_plan.likes.count %>
+   <% end %>
+  </p>
+ <% end %>
+
 </div>
 
 <div class="row">
@@ -45,6 +61,22 @@
    <% end %>
 
  </table>
+
+ <%#コメント機能実装コード%>
+ <div>
+  <p>コメント件数：<%= @trip_plan.comments.count %></p>
+  <% @comments.each do |comment| %>
+   <p><%= image_tag comment.user.get_profile_image(100,100) %></p>
+   <%= comment.user.name %>
+   <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment_content %>
+  <% end %>
+ </div>
+ <div>
+  <%= form_with model: [@trip_plan, @comment] do |f| %>
+    <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+    <%= f.submit "送信する" %>
+  <% end %>
+ </div>
 
  <div class="row">
    <%= link_to "編集", edit_trip_plan_path, class: "btn btn-success" %>

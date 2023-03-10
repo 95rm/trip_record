@@ -3,8 +3,8 @@ class TripPlan < ApplicationRecord
   has_one_attached :image
 
   belongs_to :user
-  has_many :likes
-  has_many :comments
+  has_many :likes, dependent: :destroy
+  has_many :comments, dependent: :destroy
   has_many :trip_plan_details
   has_many :reviews
   has_many :relation_tags, dependent: :destroy
@@ -33,6 +33,11 @@ class TripPlan < ApplicationRecord
     new_post_tag = Tag.find_or_create_by(name_tag: new)
     self.tags << new_post_tag
    end
+ end
+
+#いいね機能実装コード
+ def favorited_by?(user)
+  likes.exists?(user_id: user.id)
  end
 
 end

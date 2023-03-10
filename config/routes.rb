@@ -12,6 +12,10 @@ Rails.application.routes.draw do
       end
       resources :trip_plan_details, only: [:new, :create, :edit, :update]do #trip_plan_detailをネストさせている（trip_planの投稿に紐づけさせるため）
       end
+      resource :likes, only: [:create, :destroy]do #likeをネストさせている（trip_planの投稿に紐づけさせるため）,resourceを単数形にすると:idが含まれなくなる
+      end
+      resources :comments, only: [:create]do #commentをネストさせている（trip_planの投稿に紐づけさせるため）
+      end
     end
 
     get '/users' => 'users#index'

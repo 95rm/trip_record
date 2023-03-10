@@ -8,8 +8,8 @@ class User < ApplicationRecord
   has_one_attached :profile_image
 
   has_many :trip_plans
-  has_many :likes
-  has_many :comments
+  has_many :likes, dependent: :destroy
+  has_many :comments, dependent: :destroy
   #belongs_to :フォロー機能のアソシエーション記述まだしてない
 
   def get_profile_image(width, height)

@@ -7,9 +7,9 @@ class Public::TripPlansController < ApplicationController
   def create
     @trip_plan = TripPlan.new(trip_plan_params)
     @trip_plan.user_id = current_user.id
-    @tag_list = params[:trip_plan][:name_tag].split(nil)#paramsでデータを
+    @tag_list = params[:trip_plan][:name_tag].split(nil) #paramsでデータを
     if @trip_plan.save
-      @trip_plan.save_tag(@tag_list)#save_tagはTripPlanモデルに記述している
+      @trip_plan.save_tag(@tag_list) #save_tagはTripPlanモデルに記述している
     else
       render :new
     end
@@ -20,6 +20,9 @@ class Public::TripPlansController < ApplicationController
     @trip_plan = TripPlan.find(params[:id])
     @trip_plan_detail = @trip_plan.trip_plan_details
     @total = 0
+    @comment = Comment.new #コメント機能
+    @comments = @trip_plan.comments #コメント機能
+
   end
 
   def research #ransackを使い検索機能実装
@@ -32,10 +35,10 @@ class Public::TripPlansController < ApplicationController
   end
 
   def update
-    @trip_plan = TripPlan.find(params[:id])#idで保存したいデータを呼び出す
-    if @trip_plan.update(trip_plan_params)#trip_planのデータを保存する
-      @trip_plan.save_tag(params[:trip_plan][:name_tag])#タグのデータを保存する
-      redirect_to trip_plan_path(@trip_plan.id)#showページに飛ぶ
+    @trip_plan = TripPlan.find(params[:id]) #idで保存したいデータを呼び出す
+    if @trip_plan.update(trip_plan_params) #trip_planのデータを保存する
+      @trip_plan.save_tag(params[:trip_plan][:name_tag]) #タグのデータを保存する
+      redirect_to trip_plan_path(@trip_plan.id) #showページに飛ぶ
     else
       render :edit
     end
