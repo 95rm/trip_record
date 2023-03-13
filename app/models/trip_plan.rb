@@ -14,10 +14,15 @@ class TripPlan < ApplicationRecord
    image.variant(resize_to_limit: [width, height]).processed
   end
 
-#ransackを使った検索機能
+#ransackを使ったキーワード検索機能
   def self.ransackable_attributes(auth_object = nil)
     ["budget", "created_at", "first_day", "first_month", "id", "number_day", "second_day", "second_month", "status", "title_name", "updated_at", "user_id"]
   end
+
+#ransackを使ったタグ検索機能
+  #def self.ransackable_attributes(auth_object = nil)
+    #["id", "created_at", "tag_name", "updated_at"]
+  #end
 
 #タグ機能実装コード
  def save_tag(sent_tags)

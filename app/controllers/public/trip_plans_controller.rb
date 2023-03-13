@@ -25,7 +25,8 @@ class Public::TripPlansController < ApplicationController
 
   end
 
-  def research #ransackを使い検索機能実装
+  def research
+    #ransackを使った検索機能実装
     @q = TripPlan.ransack(params[:q])
     @trip_plans = @q.result
   end

@@ -15,6 +15,14 @@ class Public::UsersController < ApplicationController
     @trip_plans =  @user.trip_plans
   end
 
+  def likes
+    @user = User.find(params[:id])
+    @likes = Like.where(user_id: @user.id).pluck(:trip_plan_id)
+    @like_trip_plan = TripPlan.find(@likes)
+  end
+
+
+  private
   def user_params
     params.require(:user).permit(:account_name, :email, :encrypted_password, :is_deleted)
   end

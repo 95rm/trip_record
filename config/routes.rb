@@ -14,7 +14,7 @@ Rails.application.routes.draw do
       end
       resource :likes, only: [:create, :destroy]do #likeをネストさせている（trip_planの投稿に紐づけさせるため）,resourceを単数形にすると:idが含まれなくなる
       end
-      resources :comments, only: [:create]do #commentをネストさせている（trip_planの投稿に紐づけさせるため）
+      resources :comments, only: [:create, :edit, :update, :destroy]do #commentをネストさせている（trip_planの投稿に紐づけさせるため）
       end
     end
 
@@ -27,15 +27,13 @@ Rails.application.routes.draw do
     get '/users/:id/follows' => 'users#follow'
     get '/users/:id/followers' => 'users#follower'
 
-    resources :users, only: [:show]
+    resources :users, only: [:show]do
+      member do
+        get :likes
+      end
+    end
 
     resources :reviews, only: [:show, :edit, :update]do
-    end
-
-    resources :comments, only: [:index, :create, :edit, :update, :destroy]do
-    end
-
-    resources :likes, only: [:create, :destroy]do
     end
 
     resources :relationships, only: [:create, :destroy]do

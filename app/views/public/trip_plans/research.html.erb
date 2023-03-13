@@ -1,7 +1,8 @@
+<%#キーワード検索%>
 <div class="row justify-content-center mt-5">
 <%= search_form_for @q, url: research_trip_plans_path do |f| %>
   <p>キーワード検索</p>
-  <%= f.search_field :title_name_cont, placeholder: '旅行タイトル' %><%#検索フォーム%>
+  <%= f.search_field :title_name_cont, placeholder: '旅行タイトル名' %><%#検索フォーム%>
   <%= f.submit "検索" %>
 <% end %>
 </div>
@@ -14,6 +15,6 @@
 <% end %>
 </div>
 
-<div class="row justify-content-center mt-5">
-  <p>タグ検索</p>
-</div>
+<%= link_to users_my_page_path do %>
+ <i class="fas fa-home fa-2x"></i>
+<% end %>

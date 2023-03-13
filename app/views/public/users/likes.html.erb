@@ -1,0 +1,11 @@
+<div class="container">
+    <% @like_trip_plan.each do |likes| %>
+    <div class="row">
+     ・<%=link_to likes.title_name, trip_plan_path(likes.id) %>
+     </div>
+    <% end %>
+
+  <%= link_to users_my_page_path do %>
+    <i class="fas fa-home fa-2x"></i>
+  <% end %>
+</div>
