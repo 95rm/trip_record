@@ -2,7 +2,7 @@
 <div class="row justify-content-center mt-5">
 <%= search_form_for @q, url: research_trip_plans_path do |f| %>
   <p>キーワード検索</p>
-  <%= f.search_field :title_name_cont, placeholder: '旅行タイトル名' %><%#検索フォーム%>
+  <%= f.search_field :title_name_cont, placeholder: '旅行タイトル名' %><!--検索フォーム"-->
   <%= f.submit "検索" %>
 <% end %>
 </div>
@@ -18,3 +18,40 @@
 <%= link_to users_my_page_path do %>
  <i class="fas fa-home fa-2x"></i>
 <% end %>
+
+<%#タグ検索%>
+<div class="row justify-content-center mt-5">
+  <%= form_with url: research_trip_plans_path, method: :get do |f| %>
+    <p>タグ検索</p>
+    <%= f.search_field :tag_name, placeholder: 'タグ名', value: params[:tag_name] %><%#検索フォーム%>
+    <%= f.submit "検索" %>
+    <div id="tag_result"></div>
+　<% end %>
+</div>
+
+<div class="mt-3">
+<% @trip_plans.each do |a| %>
+  <div class="row justify-content-center">
+   ・<%= a.title_name %><%#検索結果を表示させる%>
+  </div>
+<% end %>
+</div>
+
+<script>
+  const target = $('#tag_name')
+  const tagNames = <%== Tag.all.pluck(:name_tag) %>
+  target.on("input", (e) => {
+    $('#tag_result').empty()
+    if ($('#tag_name').val().length > 0) {
+      const result = tagNames.filter(o => o.includes(e.target.value) )
+      result.forEach((o, i) => {
+        $('#tag_result').append('<div id="tag_index_' + i + '">' + o + '</div>')
+        $('#tag_index_' + i).on('click', (e) => {
+          target.val(e.target.textContent)
+        })
+      })
+    }
+  })
+  
+</script>
+

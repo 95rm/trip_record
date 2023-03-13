@@ -26,7 +26,7 @@
    <div class="col-3"><%= @trip_plan.budget %>円</div>
 
    <p>合計金額</p>
-   <% @trip_plan_detail.each do |f| %>
+   <% @trip_plan_details.each do |f| %>
     <div class="col-3"><%= @total += f.price %>円</div>
    <% end %>
 
@@ -44,20 +44,21 @@
        <th>変更ボタン</th>
      </tr>
    </thead>
-   <% @trip_plan_detail.each do |t| %>
+   <% @trip_plan_details.each do |t| %>
    <tbody>
      <tr>
        <td><%= t.hour %>:<%= t.minute %>~</td>
        <td><%= t.category %></td>
        <td> <%= t.destination %></td>
-       <td><%= link_to "詳細", review_path, class: "btn btn-success" %></td>
+       <td><%= link_to "review詳細", trip_plan_detail_reviews_path(t), class: "btn btn-success" %></td>
        <td><%= link_to "変更", edit_trip_plan_trip_plan_detail_path(t.trip_plan_id, t.id), class: "btn btn-success" %>
      </tr>
    </tbody>
    <% end %>
 
+  tag:
    <% @trip_plan.tags.each do |tag| %><%#タグを出力%>
-    <%= tag.name_tag %>
+    <%= link_to tag.name_tag, research_trip_plans_path(tag_name: tag.name_tag), class: "badge badge-success mx-1" %>
    <% end %>
 
  </table>
@@ -66,14 +67,14 @@
  <div>
   <p>コメント件数：<%= @trip_plan.comments.count %></p>
   <% @comments.each do |comment| %>
-   <p><%= image_tag comment.user.get_profile_image(100,100) %></p>
-   <%= comment.user.name %>
+   <p><%= image_tag comment.user.get_profile_image(100,100) if comment.user.profile_image.attached? %></p>
+   <%= comment.user.account_name %>
    <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment_content %>
   <% end %>
  </div>
  <div>
   <%= form_with model: [@trip_plan, @comment] do |f| %>
-    <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+    <%= f.text_area :comment_content, rows: '5', placeholder: "コメントをここに" %>
     <%= f.submit "送信する" %>
   <% end %>
  </div>
