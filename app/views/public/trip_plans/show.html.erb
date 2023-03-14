@@ -4,7 +4,7 @@
  <p>旅行タイトル</p>
  <div class="col-3"><%= @trip_plan.title_name %></div>
 
- <%#いいね機能実装%>
+ <!--いいね機能実装!-->
  <% if @trip_plan.favorited_by?(current_user) %>
   <p>
    <%= link_to trip_plan_likes_path(@trip_plan), method: :delete do %>
@@ -57,13 +57,13 @@
    <% end %>
 
   tag:
-   <% @trip_plan.tags.each do |tag| %><%#タグを出力%>
+   <% @trip_plan.tags.each do |tag| %><!--タグを出力!-->
     <%= link_to tag.name_tag, research_trip_plans_path(tag_name: tag.name_tag), class: "badge badge-success mx-1" %>
    <% end %>
 
  </table>
 
- <%#コメント機能実装コード%>
+ <!--コメント機能実装コード!-->
  <div>
   <p>コメント件数：<%= @trip_plan.comments.count %></p>
   <% @comments.each do |comment| %>
@@ -86,5 +86,16 @@
     <i class="fas fa-home fa-2x"></i>
    <% end %>
  </div>
+
+<!--投稿の公開・非公開機能実装コード!-->
+<%= form_with model: @trip_plan, url: trip_plan_path(@trip_plan.id), method: :patch do |f| %>
+ <div>
+   <%= f.label :status, "公開", value: true %>
+   <%= f.radio_button :status, 'true' %>
+   <%= f.label :status, "非公開", value: false %>
+   <%= f.radio_button :status,'false' %>
+   <%= f.submit "更新", class: "btn btn-success" %>
+ </div>
+<% end %>
 
 </div>

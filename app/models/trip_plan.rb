@@ -9,7 +9,8 @@ class TripPlan < ApplicationRecord
   has_many :reviews
   has_many :relation_tags, dependent: :destroy
   has_many :tags,through: :relation_tags
-  
+
+#タグ検索機能実装コード
   after_initialize do
     self.tag_list_to_s = self.tags.pluck(:name_tag).join(" ")
   end
@@ -22,11 +23,6 @@ class TripPlan < ApplicationRecord
   def self.ransackable_attributes(auth_object = nil)
     ["budget", "created_at", "first_day", "first_month", "id", "number_day", "second_day", "second_month", "status", "title_name", "updated_at", "user_id"]
   end
-
-#ransackを使ったタグ検索機能
-  #def self.ransackable_attributes(auth_object = nil)
-  #  ["id", "created_at", "tag_name", "updated_at"]
-  #end
 
 #タグ機能実装コード
  def save_tag(sent_tags)
@@ -50,5 +46,9 @@ class TripPlan < ApplicationRecord
  def favorited_by?(user)
   likes.exists?(user_id: user.id)
  end
+ 
+ #投稿の公開・非公開機能実装コード
+ scope :published, -> {where(status: true)}
+ scope :unpublished, -> {where(status: false)}
 
 end

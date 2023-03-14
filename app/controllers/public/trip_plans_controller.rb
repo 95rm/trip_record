@@ -18,6 +18,7 @@ class Public::TripPlansController < ApplicationController
 
   def show
     @trip_plan = TripPlan.find(params[:id])
+    #@trip_plan = @trip_plan.published  #投稿の公開・非公開機能実装コード
     @trip_plan_details = @trip_plan.trip_plan_details
     @total = 0
     @comment = Comment.new #コメント機能
@@ -30,9 +31,6 @@ class Public::TripPlansController < ApplicationController
     @q = TripPlan.joins(:tags).distinct.ransack(params[:q])
     @trip_plans = @q.result
     @trip_plans = @trip_plans.where('name_tag like ?', "%#{params[:tag_name]}%") if params[:tag_name].present?
-    #ransackを使ったタグ検索機能実装
-    #@tag_search = TripPlan.ransack(params[:q])
-    #@trip_plans = @tag_search.result
   end
 
   def edit

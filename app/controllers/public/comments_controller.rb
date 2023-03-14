@@ -12,7 +12,7 @@ class Public::CommentsController < ApplicationController
       @total = 0
       @comments = @trip_plan.comments #コメント機能
       flash[:alert] = "failed"
-      render 'public/trip_plans/show'
+      render 'public/trip_plans/show' #renderをするときは同じアクションに表示させるためのインスタンス定数がないとエラーが起きてしまうため、必要なインスタンス定数を記載する
     end
   end
 
