@@ -20,7 +20,6 @@ class Public::TripPlansController < ApplicationController
     @trip_plan = TripPlan.find(params[:id])
     #@trip_plan = @trip_plan.published  #投稿の公開・非公開機能実装コード
     @trip_plan_details = @trip_plan.trip_plan_details
-    @total = 0
     @comment = Comment.new #コメント機能
     @comments = @trip_plan.comments #コメント機能
 

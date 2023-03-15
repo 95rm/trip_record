@@ -26,9 +26,11 @@
    <div class="col-3"><%= @trip_plan.budget %>円</div>
 
    <p>合計金額</p>
+   <% @total = 0 %>
    <% @trip_plan_details.each do |f| %>
-    <div class="col-3"><%= @total += f.price %>円</div>
+    <% @total += f.price %>
    <% end %>
+   <div class="col-3"><%= @total %>円</div>
 
    <p>差額</p>
    <div class="col-3"><%= @calculation_result = @trip_plan.budget - @total %>円</div>
@@ -50,8 +52,9 @@
        <th>時間</th>
        <th>カテゴリー</th>
        <th>場所</th>
-       <th>詳細ボタン</th>
+       <th></th>
        <th>変更ボタン</th>
+       <th>削除</th>
      </tr>
    </thead>
    <% @trip_plan_details.each do |t| %>
@@ -60,8 +63,9 @@
        <td><%= t.hour %>:<%= t.minute %>~</td>
        <td><%= t.category %></td>
        <td> <%= t.destination %></td>
-       <td><%= link_to "review詳細", trip_plan_detail_reviews_path(t), class: "btn btn-success" %></td>
+       <td><%= link_to "レビュー", trip_plan_detail_reviews_path(t), class: "btn btn-success" %></td>
        <td><%= link_to "変更", edit_trip_plan_trip_plan_detail_path(t.trip_plan_id, t.id), class: "btn btn-success" %>
+       <td><%= link_to "削除", trip_plan_trip_plan_detail_path(t.trip_plan_id, t.id), method: :delete, class: "btn btn-danger" %></td>
      </tr>
    </tbody>
    <% end %>
@@ -90,11 +94,9 @@
  </div>
 
  <div class="row">
+   <%= link_to "追加", new_trip_plan_trip_plan_detail_path(@trip_plan.id), class: "btn btn-info" %>
    <%= link_to "編集", edit_trip_plan_path, class: "btn btn-success" %>
    <%= link_to "削除", trip_plan_path(@trip_plan.id), method: :delete, class: "btn btn-danger", "data-confirm" => "本当に消しますか？" %>
-   <%= link_to users_my_page_path do %>
-    <i class="fas fa-home fa-2x"></i>
-   <% end %>
  </div>
 
 <!--投稿の公開・非公開機能実装コード!-->

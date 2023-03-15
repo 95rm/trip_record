@@ -21,6 +21,12 @@ class Public::TripPlanDetailsController < ApplicationController
     redirect_to  trip_plan_path(@trip_plan_detail.trip_plan_id)
   end
 
+  def destroy
+    @trip_plan_detail = TripPlanDetail.find(params[:id])
+    @trip_plan_detail.destroy
+    redirect_to trip_plan_path(@trip_plan_detail.trip_plan_id)
+  end
+
   private
   def trip_plan_detail_params
     params.require(:trip_plan_detail).permit(:trip_plan_id, :hour, :minute, :category, :what_day, :destination, :price)
