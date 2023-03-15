@@ -10,22 +10,6 @@
    </div>
   <% end %>
 
-
-  <div class="row justify-content-center">
-   <%= link_to users_path do %>
-    <i class="fas fa-history fa-2x"></i>
-   <% end %>
-   <%= link_to research_trip_plans_path do %>
-    <i class="fab fa-sistrix fa-2x"></i>
-   <% end %>
-   <%= link_to new_trip_plan_path do %>
-    <i class="fas fa-plus fa-2x"></i>
-   <% end %>
-   <%= link_to users_my_page_path do %>
-    <i class="fas fa-home fa-2x"></i>
-   <% end %>
-  </div>
-
   <div class="row justify-content-center">
    <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-danger" %>
   </div>

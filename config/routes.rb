@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   namespace :admin do
     resources :comments, only: [:index, :destroy]
-    resources :users, only: [:show, :edit, :update]
+    resources :users, only: [:index, :show, :edit, :update]
   end
 
   scope module: :public do

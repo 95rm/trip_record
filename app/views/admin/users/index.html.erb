@@ -1,0 +1,10 @@
+<div class="container">
+<h3>アカウント作成済みユーザー一覧画面</h3>
+
+  <% @users.each do |u| %>
+  <div class="row">
+   ・<%= link_to u.account_name, admin_user_path(u.id) %>
+  </div>
+  <% end %>
+
+</div>

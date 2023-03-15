@@ -34,6 +34,16 @@
    <div class="col-3"><%= @calculation_result = @trip_plan.budget - @total %>円</div>
 </div>
 
+<div class="row">
+ <p>日程</p>
+ <div class="col-3"><%= @trip_plan.first_month %>月<%= @trip_plan.first_day %>日 ～ <%= @trip_plan.second_month %>月<%= @trip_plan.second_day %>日</div>
+</div>
+
+<div class="row">
+ <p>日数</p>
+ <div class="col-3"><%= @trip_plan.number_day %>日間の旅</div>
+</div>
+
  <table class="table">
    <thead>
      <tr>

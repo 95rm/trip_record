@@ -11,6 +11,56 @@
   </head>
 
   <body>
+    <header class="shadow-sm">
+      <nav class="navbar navbar-expand-lg navbar-light bg-warning">
+        <div class="container">
+          <div class="collapse navbar-collapse" id = "navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+              <% if user_signed_in? %>
+                <li class="nav-item">
+                 <%= link_to research_trip_plans_path, class:"nav-link text-dark" do %>
+                  <i class="fas fa-history fa-2x"></i>
+                 <% end %>
+                <li class="nav-item">
+                 <%= link_to users_path, class:"nav-link text-dark" do %>
+                  <i class="fab fa-sistrix fa-2x"></i>
+                 <% end %>
+                <li class="nav-item">
+                 <%= link_to new_trip_plan_path, class:"nav-link text-dark" do %>
+                  <i class="fas fa-plus fa-2x"></i>
+                 <% end %>
+                <li class="nav-item">
+                 <%= link_to users_my_page_path, class:"nav-link text-dark" do %>
+                  <i class="fas fa-home fa-2x"></i>
+                 <% end %>
+
+              <% elsif admin_signed_in? %>
+                <li class="nav-item">
+                 <%= link_to admin_users_path, class:"nav-link text-dark" do %>
+                  <i class="fas fa-users fa-2x"></i>
+                 <% end %>
+                <li class="nav-item">
+                 <%= link_to admin_comments_path, class:"nav-link text-dark" do %>
+                  <i class="fas fa-comments fa-2x"></i>
+                 <% end %>
+                <li class="nav-item">
+                 <%= link_to destroy_admin_session_path, method: :delete, class:"nav-link text-dark" do %>
+                  <i class="fas fa-sign-out-alt fa-2x"></i>
+                 <% end %>
+
+              <% else %>
+                <li class="nav-item">
+                 <%= link_to root_path, class:"nav-link text-dark" do %>
+                  <i class="fas fa-plane-departure fa-2x"></i>
+                 <% end %>
+              <% end %>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
     <%= yield %>
   </body>
 </html>

@@ -46,7 +46,7 @@ class TripPlan < ApplicationRecord
  def favorited_by?(user)
   likes.exists?(user_id: user.id)
  end
- 
+
  #投稿の公開・非公開機能実装コード
  scope :published, -> {where(status: true)}
  scope :unpublished, -> {where(status: false)}
