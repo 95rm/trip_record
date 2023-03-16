@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(version: 2023_03_02_141040) do
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.integer "trip_plan_id", null: false
+    t.integer "trip_plan_detail_id", null: false
     t.text "review", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

@@ -42,7 +42,9 @@ class Public::TripPlansController < ApplicationController
   def update
     @trip_plan = TripPlan.find(params[:id]) #idで保存したいデータを呼び出す
     if @trip_plan.update(trip_plan_params) #trip_planのデータを保存する
-      @trip_plan.save_tag(params[:trip_plan][:tag_list_to_s]) #タグのデータを保存する
+      if params[:trip_plan][:tag_list_to_s]
+        @trip_plan.save_tag(params[:trip_plan][:tag_list_to_s]) #タグのデータを保存する
+      end
       redirect_to trip_plan_path(@trip_plan.id) #showページに飛ぶ
     else
       render :edit

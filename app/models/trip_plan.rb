@@ -6,17 +6,12 @@ class TripPlan < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :trip_plan_details
-  has_many :reviews
   has_many :relation_tags, dependent: :destroy
   has_many :tags,through: :relation_tags
 
 #タグ検索機能実装コード
   after_initialize do
     self.tag_list_to_s = self.tags.pluck(:name_tag).join(" ")
-  end
-
-  def get_image(width, height)
-   image.variant(resize_to_limit: [width, height]).processed
   end
 
 #ransackを使ったキーワード検索機能

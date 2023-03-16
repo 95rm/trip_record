@@ -34,7 +34,7 @@ Rails.application.routes.draw do
     end
 
     resources :trip_plan_details, only: [] do
-      resource :reviews, only: [:show, :edit, :update]do
+      resource :reviews, only: [:create, :show, :edit, :update]do
       end
     end
 
