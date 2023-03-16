@@ -1,0 +1,23 @@
+<div class="container">
+<h3><b>コメント管理ページ</b></h3>
+<table class="table table table-borderless mt-3">
+  <thead>
+    <tr>
+      <th>アカウント名</th>
+      <th>コメントした旅行タイトル名</th>
+      <th>コメント内容</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @comment.each do |c| %>
+    <tr>
+      <td><%= c.user.account_name %></td>
+      <td><%= c.trip_plan.title_name %></td>
+      <td><%= c.comment_content %></td>
+      <td><%= link_to '削除', admin_comment_path(c.id), method: :delete, class: "btn btn-danger" %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+</div>

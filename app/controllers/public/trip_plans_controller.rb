@@ -18,7 +18,10 @@ class Public::TripPlansController < ApplicationController
 
   def show
     @trip_plan = TripPlan.find(params[:id])
-    #@trip_plan = @trip_plan.published  #投稿の公開・非公開機能実装コード
+    if @trip_plan.user_id != current_user.id && !@trip_plan.status
+      redirect_to users_my_page_path
+      return
+    end
     @trip_plan_details = @trip_plan.trip_plan_details
     @comment = Comment.new #コメント機能
     @comments = @trip_plan.comments #コメント機能

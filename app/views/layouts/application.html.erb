@@ -18,11 +18,11 @@
             <ul class="navbar-nav ml-auto">
               <% if user_signed_in? %>
                 <li class="nav-item">
-                 <%= link_to research_trip_plans_path, class:"nav-link text-dark" do %>
+                 <%= link_to users_path, class:"nav-link text-dark" do %>
                   <i class="fas fa-history fa-2x"></i>
                  <% end %>
                 <li class="nav-item">
-                 <%= link_to users_path, class:"nav-link text-dark" do %>
+                 <%= link_to research_trip_plans_path, class:"nav-link text-dark" do %>
                   <i class="fab fa-sistrix fa-2x"></i>
                  <% end %>
                 <li class="nav-item">

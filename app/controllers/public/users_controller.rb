@@ -1,7 +1,7 @@
 class Public::UsersController < ApplicationController
 
   def index
-    @trip_plans = TripPlan.all
+    @trip_plans = TripPlan.published
   end
 
   def show
