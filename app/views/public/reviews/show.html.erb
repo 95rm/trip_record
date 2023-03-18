@@ -18,7 +18,11 @@
   <% end %>
 
    <p>・投稿写真</p>
-    <%#= image_tag @review.get_image(300,300) %>
+    <% if @review.nil? %>
+    <%= image_tag 'no_image.jpg' %>
+    <% else %>
+    <%= image_tag @review.get_image(300,300) %>
+    <% end %>
 
    <p>・レビュー内容</p>
    <%= @review.try(:review) %>

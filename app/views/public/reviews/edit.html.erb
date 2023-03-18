@@ -1,7 +1,8 @@
 <div class="container">
  <%= form_with model: @review, url: trip_plan_detail_reviews_path, method: :patch do |f| %>
   <p>・投稿写真</p>
-  <%#= image_tag @review.get_image(300,300) %>
+  <%= f.file_field :image, accept: "image/*" %>
+  <%= image_tag @review.get_image(300,300) %>
 
   <p>・レビュー内容</p>
   <div class="row">

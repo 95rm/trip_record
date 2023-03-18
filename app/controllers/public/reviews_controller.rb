@@ -5,8 +5,9 @@ class Public::ReviewsController < ApplicationController
   end
 
   def create
+    #byebug
     @review = Review.new(review_params)
-    @review.trip_plan_detail_id = @review.trip_plan_detail_id
+    @review.trip_plan_detail_id = params[:trip_plan_detail_id]
     @review.save
     redirect_to trip_plan_detail_reviews_path
   end
@@ -16,7 +17,9 @@ class Public::ReviewsController < ApplicationController
   end
 
   def update
-
+    @review = TripPlanDetail.find(params[:trip_plan_detail_id]).review
+    @review.update(review_params)
+    redirect_to trip_plan_detail_reviews_path
   end
 
   private
