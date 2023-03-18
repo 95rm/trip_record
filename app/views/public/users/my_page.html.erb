@@ -6,6 +6,17 @@
    <div class="col-10"><%= @user.account_name %></div>
   </div>
 
+  <!--フォロー・フォロワー機能!-->
+  <div class="row">
+   <p><% "id: #{@user.id}" %></p>
+   <div class="col-2"><p><%= link_to "フォロー数: #{@user.follower.count}", follows_user_path(@user.id) %></p></div>
+   <div class="col-2"><p><%=link_to "フォロワー数: #{@user.followed.count}", followers_user_path(@user.id) %></p></div>
+  </div>
+
+  <div class="row mb-4">
+   <div class="col-10"><%= link_to 'いいね一覧', likes_user_path(@user.id), class: "btn btn-success" %></div>
+  </div>
+
   <div><p>旅行計画投稿一覧</p></div>
   <% @trip_plans.each do |t| %>
    <div class="row">

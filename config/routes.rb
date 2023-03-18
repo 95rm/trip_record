@@ -24,8 +24,6 @@ Rails.application.routes.draw do
     patch '/users/information' => 'users#pudate'
     get '/users/stop' => 'users#stop'
     patch '/users/withdraw' => 'users#withdraw'
-    get '/users/:id/follows' => 'users#follow'
-    get '/users/:id/followers' => 'users#follower'
 
     resources :users, only: [:show]do
       member do
@@ -33,13 +31,18 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :users, only: []do
+      member do
+        get :follows, :followers
+      end
+      resource :relationships, only: [:create, :destroy]
+    end
+
     resources :trip_plan_details, only: [] do
       resource :reviews, only: [:create, :show, :edit, :update]do
       end
     end
 
-    resources :relationships, only: [:create, :destroy]do
-    end
   end
 
 devise_for :admin, skip: [:registrations, :passwords] ,controllers: {

@@ -1,8 +1,14 @@
 <div class="container">
 
-<div class="row">
- <p>旅行タイトル</p>
- <div class="col-3"><%= @trip_plan.title_name %></div>
+ <div class="row">
+  <p>アカウント名</p>
+  <div class="col-3"><%= link_to @user, user_path(@user) %></div>
+ </div>
+
+ <div class="row">
+  <p>旅行タイトル</p>
+  <div class="col-3"><%= @trip_plan.title_name %>
+ </div>
 
  <!--いいね機能実装!-->
  <% if @trip_plan.favorited_by?(current_user) %>
@@ -46,6 +52,11 @@
  <div class="col-3"><%= @trip_plan.number_day %>日間の旅</div>
 </div>
 
+<div class="row justify-content-end">
+   <%= link_to "編集", edit_trip_plan_path, class: "btn btn-success" %>
+   <%= link_to "削除", trip_plan_path(@trip_plan.id), method: :delete, class: "btn btn-danger", "data-confirm" => "本当に消しますか？" %>
+</div>
+
  <table class="table">
    <thead>
      <tr>
@@ -77,6 +88,10 @@
 
  </table>
 
+ <div class="row justify-content-end">
+  <%= link_to "追加", new_trip_plan_trip_plan_detail_path(@trip_plan.id), class: "btn btn-info" %>
+ </div>
+
  <!--コメント機能実装コード!-->
  <div>
   <p>コメント件数：<%= @trip_plan.comments.count %></p>
@@ -91,12 +106,6 @@
     <%= f.text_area :comment_content, rows: '5', placeholder: "コメントをここに" %>
     <%= f.submit "送信する" %>
   <% end %>
- </div>
-
- <div class="row">
-   <%= link_to "追加", new_trip_plan_trip_plan_detail_path(@trip_plan.id), class: "btn btn-info" %>
-   <%= link_to "編集", edit_trip_plan_path, class: "btn btn-success" %>
-   <%= link_to "削除", trip_plan_path(@trip_plan.id), method: :delete, class: "btn btn-danger", "data-confirm" => "本当に消しますか？" %>
  </div>
 
 <!--投稿の公開・非公開機能実装コード!-->

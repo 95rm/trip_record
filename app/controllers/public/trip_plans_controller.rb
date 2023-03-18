@@ -23,6 +23,7 @@ class Public::TripPlansController < ApplicationController
       return
     end
     @trip_plan_details = @trip_plan.trip_plan_details
+    @user = @trip_plan.user_id
     @comment = Comment.new #コメント機能
     @comments = @trip_plan.comments #コメント機能
 

@@ -21,6 +21,16 @@ class Public::UsersController < ApplicationController
     @like_trip_plan = TripPlan.find(@likes)
   end
 
+  def follows
+    @user = User.find(params[:id])
+    @users = @user.following_user
+  end
+
+  def followers
+    @user = User.find(params[:id])
+    @users = @user.follower_user
+  end
+
 
   private
   def user_params
