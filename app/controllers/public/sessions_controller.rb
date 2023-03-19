@@ -20,6 +20,15 @@ class Public::SessionsController < Devise::SessionsController
 
   # protected
 
+  #退会機能（一度退会したユーザーではログインできない処理）
+  def user_state
+    @user = User.find_by(email: params[:user][:email])
+    return if !@user
+    if @user.valid_password?(params[:user][:password]) && @user.is_deleted == true
+      redirect_to new_user_registration_path
+    end
+  end
+
   def after_sign_in_path_for(resource) #ログインした後のページ先設定
     users_my_page_path
   end

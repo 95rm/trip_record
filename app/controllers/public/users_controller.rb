@@ -29,6 +29,17 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def stop
+  end
+
+  #退会
+  def withdraw
+    @user = current_user
+    @user.update(is_deleted: true)
+    reset_session
+    redirect_to root_path
+  end
+
 
   private
   def user_params

@@ -42,7 +42,11 @@ class User < ApplicationRecord
      user.password = SecureRandom.urlsafe_base64
      user.account_name = "guest"
     end
+  end
 
+  #退会したユーザーがログインできないようにする処理
+  def active_for_authentication?
+    super && (is_deleted == false)
   end
 
 

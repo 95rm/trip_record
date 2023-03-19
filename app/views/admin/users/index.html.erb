@@ -1,10 +1,26 @@
 <div class="container">
 <h3><b>ユーザー一覧画面</b></h3>
 
-  <% @users.each do |u| %>
-  <div class="row">
-   ・<%= link_to u.account_name, admin_user_path(u.id) %>
-  </div>
-  <% end %>
+  <table class="table">
+   <thead>
+    <tr>
+     <th>ユーザー名</th>
+      <th>退会ステータス</th>
+    </tr>
+   </thead>
+   <% @users.each do |u| %>
+   <tbody>
+    <tr>
+     <td><%= link_to u.account_name, admin_user_path(u.id) %></td>
+     <td><% if u.is_deleted == true %>
+          <p class="text-secondary">退会</p>
+         <% else u.is_deleted == false %>
+          <p class="text-success">有効</p>
+         <% end %>
+     </td>
+    </tr>
+   </tbody>
+   <% end %>
+  </table>
 
 </div>

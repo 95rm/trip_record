@@ -1,6 +1,4 @@
 <div class="container">
-  <p>current_user以外のページ</p>
-
   <div class="row">
    <div class="col-2"><p>アカウント名</p></div>
    <div class="col-2"><%= @user.account_name %></div>
@@ -20,26 +18,6 @@
 
   <div><p>旅行計画投稿一覧</p></div>
   <% @trip_plans.each do |t| %>
-    <%=link_to t.title_name, trip_plan_path(t.id) %>
+   <div class="row">・<%=link_to t.title_name, trip_plan_path(t.id) %></div>
   <% end %>
-
-  <div class="row justify-content-center">
-   <%= link_to users_path do %>
-    <i class="fas fa-history fa-2x"></i>
-   <% end %>
-   <%= link_to research_trip_plans_path do %>
-    <i class="fab fa-sistrix fa-2x"></i>
-   <% end %>
-   <%= link_to new_trip_plan_path do %>
-    <i class="fas fa-plus fa-2x"></i>
-   <% end %>
-   <%= link_to users_my_page_path do %>
-    <i class="fas fa-home fa-2x"></i>
-   <% end %>
-  </div>
-
-  <div class="row justify-content-center">
-   <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-danger" %>
-  </div>
-
 </div>

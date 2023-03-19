@@ -26,6 +26,7 @@
 
   <div class="row justify-content-center">
    <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-danger" %>
+   <%= link_to "退会", users_stop_path, class: "btn btn-danger", "data-confirm" => "本当に退会しますか？" %>
   </div>
   <div class="row justify-content-center">
    <%= link_to "いいね一覧", likes_user_path(@user), class: "btn btn-success" %>
