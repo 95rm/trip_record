@@ -1,5 +1,5 @@
 <div class="container">
-  <h3><b>マイページ</b></h3>
+  <h3><b>My page</b></h3>
 
   <div class="row">
    <div class="col-2"><p>アカウント名</p></div>
@@ -13,22 +13,10 @@
    <div class="col-2"><p><%=link_to "フォロワー数: #{@user.followed.count}", followers_user_path(@user.id) %></p></div>
   </div>
 
-  <div class="row mb-4">
-   <div class="col-10"><%= link_to 'いいね一覧', likes_user_path(@user.id), class: "btn btn-success" %></div>
-  </div>
-
   <div><p>旅行計画投稿一覧</p></div>
   <% @trip_plans.each do |t| %>
    <div class="row">
      ・<%= link_to t.title_name, trip_plan_path(t.id) %>
    </div>
   <% end %>
-
-  <div class="row justify-content-center">
-   <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-danger" %>
-   <%= link_to "退会", users_stop_path, class: "btn btn-danger", "data-confirm" => "本当に退会しますか？" %>
-  </div>
-  <div class="row justify-content-center">
-   <%= link_to "いいね一覧", likes_user_path(@user), class: "btn btn-success" %>
-  </div>
 </div>
