@@ -3,9 +3,9 @@
   <p>
     <%= "アカウント名: #{user.account_name}" %>
     <% if current_user.following?(user) %>
-     <%= link_to '削除', user_relationships_path(user.id), method: :delete, class: "btn btn-secondary" %>
+     <%= link_to '削除', user_relationships_path(user.id), method: :delete, class: "btn-social-long-insta" %>
     <% else %>
-     <%= link_to 'フォロー', user_relationships_path(user.id), method: :POST, class: "btn btn-primary" %>
+     <%= link_to 'フォロー', user_relationships_path(user.id), method: :POST, class: "btn-social-long-insta" %>
     <% end %>
   </p>
  <% end %>

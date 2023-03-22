@@ -10,9 +10,9 @@
    <div class="col-2"><p><%= link_to "フォロー数: #{@user.follower.count}", follows_user_path(@user.id) %></p></div>
    <div class="col-2"><p><%= link_to "フォロワー数: #{@user.followed.count}", followers_user_path(@user.id) %></p></div>
    <% if current_user.following?(@user) %>
-     <%= link_to "削除", user_relationships_path(@user.id), method: :delete, class: "btn btn-secondary" %>
+     <%= link_to "Delete", user_relationships_path(@user.id), method: :delete, class: "btn-social-long-insta" %>
    <% else %>
-     <%= link_to "フォロー", user_relationships_path(@user.id), method: :post, class: "btn btn-primary btn-lg" %>
+     <%= link_to "Follow Me", user_relationships_path(@user.id), method: :post, class: "btn-social-long-insta" %>
    <% end %>
   </div>
 

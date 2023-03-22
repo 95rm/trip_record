@@ -1,0 +1,5 @@
+.sign-in-image {
+   background-image: url("<%= asset_path('paris.jpg') %>");
+   background-position: center;
+   background-size: cover;
+ }

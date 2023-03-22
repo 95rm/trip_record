@@ -60,6 +60,7 @@
  <table class="table">
    <thead>
      <tr>
+       <th>何日目</th>
        <th>時間</th>
        <th>カテゴリー</th>
        <th>場所</th>
@@ -71,6 +72,7 @@
    <% @trip_plan_details.each do |t| %>
    <tbody>
      <tr>
+       <td><%= t.what_day %>日目</td>
        <td><%= t.hour %>:<%= t.minute %>~</td>
        <td><%= t.category %></td>
        <td> <%= t.destination %></td>

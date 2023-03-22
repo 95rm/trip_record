@@ -1,2 +1,90 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
+
+/*フォローボタン*/
+.btn-social-long-insta {
+  /*ボタンの下地*/
+  color: #FFF;/*文字・アイコン色*/
+  border-radius: 7px;/*角丸に*/
+  position: relative;
+  display: inline-block;
+  height: 30px;/*高さ*/
+  width: 120px;/*幅*/
+  text-align: center;/*中身を中央寄せ*/
+  font-size: 15px;/*文字のサイズ*/
+  line-height: 27px;/*高さと合わせる*/
+  background: linear-gradient(135deg, #427eff 0%, #f13f79 70%) no-repeat;/*グラデーション①*/
+  overflow: hidden;/*はみ出た部分を隠す*/
+  text-decoration:none;/*下線は消す*/
+}
+
+.btn-social-long-insta:before {
+  /*グラデーション②*/
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;/*全体を覆う*/
+  height: 100%;/*全体を覆う*/
+  background: linear-gradient(150deg, rgba(23, 11, 226, 0.4), rgba(229, 229, 229, 0.4) 40%, rgba(225, 206, 212, 0.4) 60%, rgba(243, 8, 77, 0.4)) no-repeat;
+}
+
+.btn-social-long-insta .fa-instagram {
+  /*アイコン*/
+  font-size: 35px;/*アイコンサイズ*/
+  position: relative;
+  top: 4px;/*アイコン位置の微調整*/
+}
+
+.btn-social-long-insta span {
+  /*テキスト*/
+  display:inline-block;
+  position: relative;
+  transition: .5s}
+
+.btn-social-long-insta:hover span {
+  /*ホバーで一周回転*/
+  -webkit-transform: rotateX(360deg);
+  transform: rotateX(360deg);
+}
+
+
+
+/*ナビゲーションカラー*/
+.navbar-color{
+  background: linear-gradient(150deg, rgba(23, 11, 226, 0.4), rgba(229, 229, 229, 0.4) 40%, rgba(225, 206, 212, 0.4) 60%, rgba(243, 8, 77, 0.4)) no-repeat;
+}
+
+
+
+/*新規登録ボタン*/
+.btn-sign-up {
+  position: center;
+  display: inline-block;
+  font-weight: bold;
+  padding: 13px 15px;
+  text-decoration: none;
+  background-image: linear-gradient(150deg, rgba(85, 98, 245, 0.4) 38%, rgba(134, 144, 243, 0.4) 56%, rgba(226, 230, 238, 0.4) 81%);
+  transition: .4s;
+}
+
+.btn-sign-up:hover {
+  background-image: linear-gradient(150deg, rgba(85, 98, 245, 0.4) 38%, rgba(134, 144, 243, 0.4) 56%, rgba(226, 230, 238, 0.4) 81%);
+}
+
+
+
+/*ログインボタン*/
+.btn-sign-in {
+  position: center;
+  display: inline-block;
+  font-weight: bold;
+  padding: 13px 15px;
+  text-decoration: none;
+  background-image: linear-gradient(150deg, rgba(226, 230, 238, 0.4) 20%, rgba(243, 134, 162, 0.4) 43%, rgba(238, 16, 80, 0.4) 73%);
+  transition: .4s;
+}
+
+.btn-sign-in:hover {
+  background-image: linear-gradient(150deg, rgba(226, 230, 238, 0.4) 20%, rgba(243, 134, 162, 0.4) 43%, rgba(238, 16, 80, 0.4) 73%);
+}
