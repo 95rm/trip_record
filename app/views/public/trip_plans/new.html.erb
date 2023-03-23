@@ -8,9 +8,8 @@
    </div>
 
    <div class="row justify-content-center">
-     <p>日程（ここの入力フォームを変更したい）</p>
-     <div><%#= f.date_field :first_day, class: "col-3" %> ～ <%#= f.date_field :second_day, class: "col-3" %></div>
-     <div class="col-7"><%= f.text_field :first_month, class: "col-1" %> <%= f.text_field :first_day, class: "col-1" %>  <%= f.text_field :second_month, class: "col-1" %> <%= f.text_field :second_day, class: "col-1" %></div>
+     <p>日程</p>
+     <div class="col-7"><%= f.date_field :first_day %> ～ <%= f.date_field :second_day %></div>
    </div>
 
    <div class="row justify-content-center">

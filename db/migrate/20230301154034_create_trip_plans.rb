@@ -4,10 +4,8 @@ class CreateTripPlans < ActiveRecord::Migration[6.1]
 
       t.integer :user_id, null: false
       t.string :title_name, null: false
-      t.integer :first_month, null: false
-      t.integer :first_day, null: false
-      t.integer :second_month, null: false
-      t.integer :second_day, null: false
+      t.date :first_day, null: false
+      t.date :second_day, null: false
       t.integer :number_day, null: false
       t.integer :budget, null: false
       t.boolean :status, null: false, default: false

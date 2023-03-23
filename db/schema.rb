@@ -97,8 +97,7 @@ ActiveRecord::Schema.define(version: 2023_03_02_141040) do
 
   create_table "trip_plan_details", force: :cascade do |t|
     t.integer "trip_plan_id", null: false
-    t.integer "hour", null: false
-    t.integer "minute", null: false
+    t.time "hour", null: false
     t.string "category", null: false
     t.integer "what_day", null: false
     t.string "destination", null: false
@@ -110,10 +109,8 @@ ActiveRecord::Schema.define(version: 2023_03_02_141040) do
   create_table "trip_plans", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "title_name", null: false
-    t.integer "first_month", null: false
-    t.integer "first_day", null: false
-    t.integer "second_month", null: false
-    t.integer "second_day", null: false
+    t.date "first_day", null: false
+    t.date "second_day", null: false
     t.integer "number_day", null: false
     t.integer "budget", null: false
     t.boolean "status", default: false, null: false
