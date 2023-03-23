@@ -1,44 +1,31 @@
-<div class="container sign-in-image">
-  <div class="sign-in-image">
-<h2>ログイン</h2>
+<div class="form">
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
-  <div class="form-group">
-  <div class="row">
-    <%= f.label :"メールアドレス", class: "col-2" %>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "col-3" %>
-  </div>
-  </div>
-
-  <div class="form-group">
-  <div class="row">
-    <%= f.label :"パスワード", class: "col-2"  %>
-    <%= f.password_field :password, autocomplete: "current-password", class: "col-3" %>
-  </div>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+    <div class="text-input">
+      <label for="email">E-mail</label>
+      <%= f.text_field :email, autofocus: true, autocomplete: "email", class: "col-3", placeholder: "E-mail" %>
+      <span class="separator"> </span>
     </div>
+
+    <div class="text-input">
+      <label for="password">Password</label>
+      <%= f.password_field :password, autocomplete: "current-password", class: "col-3", placeholder: "password" %>
+      <span class="separator"> </span>
+    </div>
+
+    <div class="form-bottom">
+      <%= f.submit "Login" %>
+    </div>
+
   <% end %>
 
-  <div class="actions">
-    <%= f.submit "ログイン" %>
+  <div class="row mt-5 justify-content-center">
+    新規登録の方は<%= link_to 'こちら', new_user_registration_path %>から
   </div>
-<% end %>
 
-<div class="row mt-5">
-  新規登録の方は<%= link_to 'こちら', new_user_registration_path %>から
-</div>
-
-<div class="row">
-  <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post %>
-</div>
-</div>
+  <div class="row mt-5 justify-content-center">
+    <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post %>
+  </div>
 
 </div>
-
-

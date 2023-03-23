@@ -1,6 +1,11 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 
+/*
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+*/
+
+
 /*フォローボタン*/
 .btn-social-long-insta {
   /*ボタンの下地*/
@@ -19,7 +24,6 @@
 }
 
 .btn-social-long-insta:before {
-  /*グラデーション②*/
   content: '';
   position: absolute;
   top: 0;
@@ -30,20 +34,17 @@
 }
 
 .btn-social-long-insta .fa-instagram {
-  /*アイコン*/
   font-size: 35px;/*アイコンサイズ*/
   position: relative;
   top: 4px;/*アイコン位置の微調整*/
 }
 
 .btn-social-long-insta span {
-  /*テキスト*/
   display:inline-block;
   position: relative;
   transition: .5s}
 
 .btn-social-long-insta:hover span {
-  /*ホバーで一周回転*/
   -webkit-transform: rotateX(360deg);
   transform: rotateX(360deg);
 }
@@ -87,4 +88,155 @@
 
 .btn-sign-in:hover {
   background-image: linear-gradient(150deg, rgba(226, 230, 238, 0.4) 20%, rgba(243, 134, 162, 0.4) 43%, rgba(238, 16, 80, 0.4) 73%);
+}
+
+
+/*ログイン画面＆新規登録画面*/
+$page-bg: white;
+$light-blue: #3599FF;
+$bright-blue: #68B3FF;
+$light-gray: #999;
+//$curve: cubic-bezier(0, 0, 0.52, 1.11);
+$curve: linear;
+
+.form{
+  width: 400px;
+  margin: 0 auto;
+  text-align: left;
+  margin-top: 5em;
+
+  label{
+    display: block;
+    text-align: left;
+    color: dark;
+    font-size: .875em;
+  }
+
+  form{
+
+    .text-input{
+      overflow: hidden;
+       margin-bottom: .875em;
+    }
+
+    input[type="text"],
+    input[type="password"]{
+      width: 100%;
+      padding: 2em 0 12px;
+      padding-left: 0;
+      background: none;
+      color: dark;
+      font-size: 1em;
+      font-weight: 400;
+      border: none;
+      border-bottom: 1px solid $light-gray;
+
+
+      /*Some sibling magic happens */
+      &:focus + .separator {
+       transform: scaleX(1) translateY(-2px);
+         opacity: 1;
+      }
+
+    }
+
+    input[type="submit"]{
+      color: white;
+      background: $light-blue;
+      padding: 0.8em 1.2em;
+      font-size: 1.2em;
+      border:none;
+      border-radius: 10px;
+    }
+  }
+}
+
+.separator {
+  height:3px;
+  width: 100%;
+  background: $bright-blue;
+  display: block;
+  transform: scaleX(0) translateY(-2px);
+  transform-origin: 50%;
+  opacity: 0;
+  transition: all .15s $curve;
+}
+
+/**
+* Form Reset - remove focus highlighting
+*/
+
+* :focus {
+  outline-color: transparent;
+  outline-style: none;
+}
+
+body {
+  font-family: Roboto;
+  background: $page-bg;
+
+  a {
+    color: $light-blue;
+    font-size: 1em;
+    text-decoration: none;
+  }
+}
+
+.form-bottom{
+  margin-top:1.25em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+
+/*青ボタン*/
+.blue-btn {
+  display: inline-block;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  background-image: linear-gradient(150deg, rgba(3, 81, 248, 0.3) 10%, rgba(11, 50, 242, 0.3) 30%, rgba(52, 74, 245, 0.3) 47%, rgba(240, 242, 247, 0.3) 90%);
+  border: solid 2px dark;
+  border-radius: 3px;
+  transition: .4s;
+  font-weight: bold;
+}
+
+.blue-btn:hover {
+  background: #67c5ff;
+  background-image: linear-gradient(150deg, rgba(3, 81, 248, 0.3) 10%, rgba(11, 50, 242, 0.3) 30%, rgba(52, 74, 245, 0.3) 47%, rgba(240, 242, 247, 0.3) 90%);
+}
+
+/*赤ボタン*/
+.rad-btn {
+  display: inline-block;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  background-image: linear-gradient(150deg, rgba(226, 230, 238, 0.4) 20%, rgba(243, 134, 162, 0.4) 43%, rgba(238, 16, 80, 0.4) 73%);
+  border: solid 2px dark;
+  border-radius: 3px;
+  transition: .4s;
+  font-weight: bold;
+}
+
+.rad-btn:hover {
+  background: #f73b5e;
+  background-image: linear-gradient(150deg, rgba(226, 230, 238, 0.4) 20%, rgba(243, 134, 162, 0.4) 43%, rgba(238, 16, 80, 0.4) 73%);
+}
+
+/*赤ボタン*/
+.rainbow-btn {
+  display: inline-block;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  background: linear-gradient(150deg, rgba(23, 11, 226, 0.4), rgba(229, 229, 229, 0.4) 40%, rgba(225, 206, 212, 0.4) 60%, rgba(243, 8, 77, 0.4));
+  border: solid 2px dark;
+  border-radius: 3px;
+  transition: .4s;
+  font-weight: bold;
+}
+
+.rainbow-btn:hover {
+  background: #f73b5e;
+  background: linear-gradient(150deg, rgba(23, 11, 226, 0.4), rgba(229, 229, 229, 0.4) 40%, rgba(225, 206, 212, 0.4) 60%, rgba(243, 8, 77, 0.4));
 }
