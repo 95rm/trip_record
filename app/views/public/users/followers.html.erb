@@ -1,12 +1,16 @@
 <div class="container">
+ <h3><b>Followers</b></h3>
+
  <% @user.follower_user.where.not(id: current_user.id).each do |user| %>
-  <p>
+  <div class="row">
+   <div class="mr-4">
     <%= "アカウント名: #{user.account_name}" %>
+   </div>
     <% if current_user.following?(user) %>
-     <%= link_to '削除', user_relationships_path(user.id), method: :delete, class: "btn-social-long-insta" %>
+     <%= link_to 'Delete', user_relationships_path(user.id), method: :delete, class: "btn-social-long-insta" %>
     <% else %>
-     <%= link_to 'フォロー', user_relationships_path(user.id), method: :POST, class: "btn-social-long-insta" %>
+     <%= link_to 'Follow Me', user_relationships_path(user.id), method: :POST, class: "btn-social-long-insta" %>
     <% end %>
-  </p>
+  </div>
  <% end %>
 </div>

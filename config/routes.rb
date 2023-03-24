@@ -20,8 +20,8 @@ Rails.application.routes.draw do
 
     get '/users' => 'users#index'
     get '/users/my_page' => 'users#my_page'
-    get '/users/information/edit' => 'user#edit'
-    patch '/users/information' => 'users#pudate'
+    get '/users/information/edit' => 'users#edit'
+    patch '/users/information' => 'users#update'
     get '/users/stop' => 'users#stop'
     patch '/users/withdraw' => 'users#withdraw'
 

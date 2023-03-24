@@ -22,11 +22,10 @@ class Public::TripPlansController < ApplicationController
       redirect_to users_my_page_path
       return
     end
-    @trip_plan_details = @trip_plan.trip_plan_details.order(what_day: 'ASC').order(hour: 'ASC')
-    @user = @trip_plan.user_id
+    @trip_plan_details = @trip_plan.trip_plan_details.order(what_day: 'ASC').order(hour: 'ASC')#日にち順＆時間順に表示
+    @user = @trip_plan.user
     @comment = Comment.new #コメント機能
     @comments = @trip_plan.comments #コメント機能
-
   end
 
   def research

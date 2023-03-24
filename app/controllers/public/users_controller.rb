@@ -10,6 +10,16 @@ class Public::UsersController < ApplicationController
     #byebug
   end
 
+  def edit
+    @user = current_user
+  end
+
+  def update
+    @user = current_user
+    @user.update(user_params)
+    redirect_to users_my_page_path
+  end
+
   def my_page
     @user = current_user
     @trip_plans =  @user.trip_plans

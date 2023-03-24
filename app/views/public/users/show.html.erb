@@ -5,7 +5,7 @@
   </div>
 
   <!--フォロー・フォロワー機能!-->
-  <div class="row">
+  <div class="row mt-2">
    <p><% "id: #{@user.id}" %></p>
    <div class="col-2"><p><%= link_to "フォロー数: #{@user.follower.count}", follows_user_path(@user.id) %></p></div>
    <div class="col-2"><p><%= link_to "フォロワー数: #{@user.followed.count}", followers_user_path(@user.id) %></p></div>
@@ -16,8 +16,8 @@
    <% end %>
   </div>
 
-  <div><p>旅行計画投稿一覧</p></div>
+  <div class="mt-4"><p>旅行計画投稿一覧</p></div>
   <% @trip_plans.each do |t| %>
-   <div class="row">・<%=link_to t.title_name, trip_plan_path(t.id) %></div>
+   <div class="row mt-3">・<%=link_to t.title_name, trip_plan_path(t.id) %></div>
   <% end %>
 </div>

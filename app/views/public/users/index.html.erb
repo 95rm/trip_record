@@ -1,7 +1,8 @@
 <div class="container">
+  <h3><b>Posts List</b></h3>
 
   <% @trip_plans.each do |trip_plan| %>
-  <div class="row">
+  <div class="row mt-3">
     ・<%= link_to trip_plan.title_name, trip_plan_path(trip_plan.id) %>
   </div>
   <% end %>

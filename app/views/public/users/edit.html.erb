@@ -1,0 +1,10 @@
+<div class="container">
+
+  <%= form_with model: @user, url: users_information_path, mehod: :patch do |u| %>
+   <div class="row">アカウント名</div>
+　 <div class="row"><%= u.text_field :account_name %></div>
+　 <div class="row"><%= u.submit '登録', class: "rainbow-btn" %>
+  <% end %>
+
+</div>
+
