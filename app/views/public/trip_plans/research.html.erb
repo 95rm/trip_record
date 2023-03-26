@@ -17,13 +17,25 @@
 　<% end %>
 </div>
 
-<div class="mt-3">
-<% @trip_plans.each do |t| %>
-  <div class="row justify-content-center">
-   ・<%=link_to t.title_name,  trip_plan_path(t.id) %><%#検索結果を表示させる%>
-  </div>
+<% if params[:tag_name].blank? && params[:tag_name] == "" %>
+   <div class="row justify-content-center">
+    ・タグ名を入力してください
+   </div>
+<% elsif params[:q].present? || params[:tag_name].present? %>
+  <% if params[:q].present? && params[:q][:title_name_cont] == "" %>
+    <div class="row justify-content-center">
+     ・キーワードを入力してください
+    </div>
+  <% else %>
+    <div class="mt-3">
+    <% @trip_plans.each do |t| %>
+      <div class="row justify-content-center">
+       ・<%=link_to t.title_name,  trip_plan_path(t.id) %><%#検索結果を表示させる%>
+      </div>
+    <% end %>
+    </div>
+  <% end %>
 <% end %>
-</div>
 
 <!--タグ検索追加機能-->
 <script>

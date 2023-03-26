@@ -1,7 +1,7 @@
 <div class="container">
  <h3><b>Followers</b></h3>
 
- <% @user.follower_user.where.not(id: current_user.id).each do |user| %>
+ <% @user.follower_user.each do |user| %>
   <div class="row">
    <div class="mr-4">
     <%= "アカウント名: #{user.account_name}" %>

@@ -52,12 +52,14 @@
  <div class="col-3"><%= @trip_plan.number_day %>日間の旅</div>
 </div>
 
+<% if @trip_plan.user == current_user %>
 <div class="row justify-content-end">
  <div class=" mr-2">
   <%= link_to "編集", edit_trip_plan_path, class: "blue-btn text-dark" %>
  </div>
   <%= link_to "削除", trip_plan_path(@trip_plan.id), method: :delete, class: "rad-btn text-dark", "data-confirm" => "本当に消しますか？" %>
 </div>
+<% end %>
 
  <table class="table">
    <thead>
@@ -67,8 +69,10 @@
        <th>カテゴリー</th>
        <th>場所</th>
        <th></th>
+       <% if @trip_plan.user == current_user %>
        <th>変更ボタン</th>
        <th>削除</th>
+       <% end %>
      </tr>
    </thead>
    <% @trip_plan_details.each do |t| %>
@@ -79,8 +83,10 @@
        <td><%= t.category %></td>
        <td> <%= t.destination %></td>
        <td><%= link_to "レビュー", trip_plan_detail_reviews_path(t), class: "blue-btn text-dark" %></td>
+       <% if @trip_plan.user == current_user %>
        <td><%= link_to "変更", edit_trip_plan_trip_plan_detail_path(t.trip_plan_id, t.id), class: "blue-btn text-dark" %>
        <td><%= link_to "削除", trip_plan_trip_plan_detail_path(t.trip_plan_id, t.id), method: :delete, class: "rad-btn text-dark" %></td>
+       <% end %>
      </tr>
    </tbody>
    <% end %>
@@ -92,9 +98,11 @@
 
  </table>
 
+<% if @trip_plan.user == current_user %>
  <div class="row justify-content-end">
   <%= link_to "追加", new_trip_plan_trip_plan_detail_path(@trip_plan.id), class: "rainbow-btn text-dark" %>
  </div>
+<% end %>
 
  <!--コメント機能実装コード!-->
  <div>
@@ -113,14 +121,16 @@
  </div>
 
 <!--投稿の公開・非公開機能実装コード!-->
-<%= form_with model: @trip_plan, url: trip_plan_path(@trip_plan.id), method: :patch do |f| %>
- <div class="mb-5">
-   <%= f.label :status, "公開", value: true %>
-   <%= f.radio_button :status, 'true' %>
-   <%= f.label :status, "非公開", value: false %>
-   <%= f.radio_button :status,'false' %>
-   <%= f.submit "更新", class: "blue-btn text-dark" %>
- </div>
+<% if @trip_plan.user == current_user %>
+ <%= form_with model: @trip_plan, url: trip_plan_path(@trip_plan.id), method: :patch do |f| %>
+  <div class="mb-5">
+    <%= f.label :status, "公開", value: true %>
+    <%= f.radio_button :status, 'true' %>
+    <%= f.label :status, "非公開", value: false %>
+    <%= f.radio_button :status,'false' %>
+    <%= f.submit "更新", class: "blue-btn text-dark" %>
+  </div>
+ <% end %>
 <% end %>
 
 </div>

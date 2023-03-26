@@ -1,6 +1,7 @@
 <div class="container">
   <h3><b>レビュー</b><h3>
 
+ <% if @trip_plan_detail.trip_plan.user_id == current_user.id %>
   <%= form_with model: Review.new, url: trip_plan_detail_reviews_path, method: :post do |f| %>
    <p>・写真</p>
    <div class="row mb-5">
@@ -14,21 +15,21 @@
      <%= f.submit "投稿", class: "btn btn-primary" %>
     </div>
    </div>
+  <% end %>
+ <% end %>
 
+ <p>・投稿写真</p>
+  <% if @review.nil? %>
+  <%= image_tag 'no_image.jpg' %>
+  <% else %>
+  <%= image_tag @review.get_image(300,300) %>
   <% end %>
 
-   <p>・投稿写真</p>
-    <% if @review.nil? %>
-    <%= image_tag 'no_image.jpg' %>
-    <% else %>
-    <%= image_tag @review.get_image(300,300) %>
-    <% end %>
+ <p>・レビュー内容</p>
+ <%= @review.try(:review) %>
 
-   <p>・レビュー内容</p>
-   <%= @review.try(:review) %>
-
-   <div class="row row justify-content-start">
-    <%= link_to "変更", edit_trip_plan_detail_reviews_path, class: "btn btn-success ml-1" %>
-   </div>
+    <div class="row row justify-content-start">
+     <%= link_to "変更", edit_trip_plan_detail_reviews_path, class: "btn btn-success ml-1" %>
+    </div>
 
 </div>

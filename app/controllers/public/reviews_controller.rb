@@ -2,6 +2,7 @@ class Public::ReviewsController < ApplicationController
 
   def show
     @review  = TripPlanDetail.find(params[:trip_plan_detail_id]).review
+    @trip_plan_detail  = TripPlanDetail.find(params[:trip_plan_detail_id])
   end
 
   def create
