@@ -1,33 +1,46 @@
 <div class="container">
 
+  <% if @trip_plan_detail.errors.any? %>
+  <%= @trip_plan_detail.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @trip_plan_detail.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+  <% end %>
+
   <%= form_with model: @trip_plan_detail, url: trip_plan_trip_plan_details_path, method: :post do |f| %>
-  <div class="row">
-    <div><p>時間）</p></div>
-    <div><%= f.time_field :hour %></div>
+  <div class="row justify-content-center">
+    <div><p>時間</p></div>
+    <div class="col-8"><%= f.time_field :hour %></div>
   </div>
 
-  <div class="row">
+  <div class="row justify-content-center">
     <div><p>カテゴリー</p></div>
-    <div><%= f.select :category, [["食事","食事"], ["移動","移動"], ["遊び","遊び"], ["ホテル","ホテル"]] %></div>
+    <div class="col-7"><%= f.select :category, [["食事","食事"], ["移動","移動"], ["遊び","遊び"], ["ホテル","ホテル"]] %></div>
   </div>
 
-  <div class="row">
+  <div class="row justify-content-center">
     <div><p>日数</p></div>
-    <div><%= f.number_field :what_day %>日目</div>
+    <div class="col-7"><%= f.number_field :what_day %>日目</div>
   </div>
 
-  <div class="row">
+  <div class="row justify-content-center">
     <div><p>目的地</p></div>
-    <div><%= f.text_field :destination %></div>
+    <div class="col-7"><%= f.text_field :destination %></div>
   </div>
 
-  <div class="row">
+  <div class="row justify-content-center">
     <div><p>予算</p></div>
-    <div><%= f.text_field :price %>円</div>
+    <div class="col-7"><%= f.text_field :price %>円</div>
   </div>
 
-  <div><%= f.submit '登録', class: "rainbow-btn text-dark" %></div>
+  <div class="row justify-content-center"><%= f.submit '登録', class: "rainbow-btn text-dark" %></div>
 
   <% end %>
+
+  <div class="row justify-content-end text-red">
+   <P><b>※目的地を１つ入力してください</b><p>
+  </div>
 
 </div>

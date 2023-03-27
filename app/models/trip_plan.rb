@@ -9,6 +9,12 @@ class TripPlan < ApplicationRecord
   has_many :relation_tags, dependent: :destroy
   has_many :tags,through: :relation_tags
 
+  validates :title_name, presence: true
+  validates :first_day, presence: true
+  validates :second_day, presence: true
+  validates :number_day, presence: true
+  validates :budget, presence: true
+
 #タグ検索機能実装コード
   after_initialize do
     self.tag_list_to_s = self.tags.pluck(:name_tag).join(" ")

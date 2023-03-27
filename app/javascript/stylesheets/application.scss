@@ -240,3 +240,14 @@ body {
   background: #f73b5e;
   background: linear-gradient(150deg, rgba(23, 11, 226, 0.4), rgba(229, 229, 229, 0.4) 40%, rgba(225, 206, 212, 0.4) 60%, rgba(243, 8, 77, 0.4));
 }
+
+/*背景画像*/
+.background-image {
+  background: url("/images/haikei.jpg") 50% fixed;
+  background-size: cover;
+}
+
+/*背景画像*/
+.text-red{
+  color: red;
+}

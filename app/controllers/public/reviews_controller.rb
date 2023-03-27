@@ -9,8 +9,11 @@ class Public::ReviewsController < ApplicationController
     #byebug
     @review = Review.new(review_params)
     @review.trip_plan_detail_id = params[:trip_plan_detail_id]
-    @review.save
-    redirect_to trip_plan_detail_reviews_path
+    if @review.save
+      redirect_to trip_plan_detail_reviews_path
+    else
+      render :show
+    end
   end
 
   def edit

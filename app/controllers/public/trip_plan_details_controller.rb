@@ -7,8 +7,11 @@ class Public::TripPlanDetailsController < ApplicationController
   def create
     @trip_plan_detail = TripPlanDetail.new(trip_plan_detail_params)
     @trip_plan_detail.trip_plan_id = params[:trip_plan_id]
-    @trip_plan_detail.save
-    redirect_to  trip_plan_path(@trip_plan_detail.trip_plan_id)
+    if @trip_plan_detail.save
+      redirect_to  trip_plan_path(@trip_plan_detail.trip_plan_id)
+    else
+      render :new
+    end
   end
 
   def edit

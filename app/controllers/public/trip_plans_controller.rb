@@ -10,10 +10,10 @@ class Public::TripPlansController < ApplicationController
     @tag_list = params[:trip_plan][:name_tag] #paramsでデータを
     if @trip_plan.save
       @trip_plan.save_tag(@tag_list) #save_tagはTripPlanモデルに記述している
+      redirect_to new_trip_plan_trip_plan_detail_path(@trip_plan)
     else
       render :new
     end
-    redirect_to new_trip_plan_trip_plan_detail_path(@trip_plan)
   end
 
   def show
