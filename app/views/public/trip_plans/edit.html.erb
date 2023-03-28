@@ -1,34 +1,34 @@
 <div class="container">
 
   <%= form_with model: @trip_plan, url: trip_plan_path, method: :patch do |t| %>
-  <div class="row">
-    <p>旅行タイトル名</p>
-    <div class="col-3"><%= t.text_field :title_name %></div>
-  </div>
+  <div class="row justify-content-center mb-3">
+     <p>旅行のタイトル</p>
+     <div class="col-8"><%= t.text_field :title_name %></div>
+   </div>
 
-  <div class="row">
-    <p>日程</p>
-    <div class="col-7"><%= t.text_field :first_month, class:"col-1" %>月<%= t.text_field :first_day, class:"col-1" %>日　～　<%= t.text_field :second_month, class:"col-1" %>月<%= t.text_field :second_day, class:"col-1" %>日</div>
-  </div>
+   <div class="row justify-content-center mb-3">
+     <p>日程</p>
+     <div class="col-7"><%= t.date_field :first_day %> ～ <%= t.date_field :second_day %></div>
+   </div>
 
-  <div class="row">
-    <p>日数</p>
-    <div class="col-7"><%= t.text_field :number_day, class:"col-1" %>日</div>
-  </div>
+   <div class="row justify-content-center mb-3">
+     <p>期間</p>
+     <div class="col-7"><%= t.number_field :number_day, class: "col-2 hoge", min: 0 %>日間</div>
+   </div>
 
-  <div class="row">
-    <p>旅の予算</p>
-    <div class="col-7"><%= t.text_field :budget, class:"col-2" %>円</div>
-  </div>
+   <div class="row justify-content-center mb-3">
+     <p>予算</p>
+     <div class="col-7"><%= t.text_field :budget %>円</div>
+   </div>
 
-  <div class="row">
-    <p>タグ</p>
-    <div class="col-7"><%= t.text_field :tag_list_to_s, class:"col-4" %></div>
-  </div>
+   <div class="row justify-content-center mb-3">
+     <p>タグ</p>
+     <div class="col-7"><%= t.text_field :tag_list_to_s, class:"col-4" %></div>
+   </div>
 
-  <div class="row">
-    <%= t.submit '登録', class: "btn btn-success" %>
-  </div>
+   <div class="row justify-content-center">
+     <%= t.submit '次へ', class: "rainbow-btn text-dark" %>
+   </div>
 
   <% end %>
 

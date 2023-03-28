@@ -241,13 +241,16 @@ body {
   background: linear-gradient(150deg, rgba(23, 11, 226, 0.4), rgba(229, 229, 229, 0.4) 40%, rgba(225, 206, 212, 0.4) 60%, rgba(243, 8, 77, 0.4));
 }
 
-/*背景画像*/
-.background-image {
-  background: url("/images/haikei.jpg") 50% fixed;
+/*背景画像(public/images直下に入れている)*/
+ body {
+  background-image: url('/images/haikei.jpg'); /*javascript/imagesの直下に画像を入れる場合「../images/haikei.jpg」とする*/
   background-size: cover;
+  background-color:rgba(255,255,255,0.6);
+  background-blend-mode:lighten;
 }
 
-/*背景画像*/
-.text-red{
-  color: red;
-}
+
+/*文字赤*/
+ .text-red{
+   color: red;
+ }
