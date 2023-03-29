@@ -1,14 +1,14 @@
 <div class="container">
   <div class="row">
-   <div class="col-2"><p>アカウント名</p></div>
-   <div class="col-2"><%= @user.account_name %></div>
+   <div class="col-2"><h4>アカウント名</h4></div>
+   <div class="col-2"><h4><%= @user.account_name %></h4></div>
   </div>
 
   <!--フォロー・フォロワー機能!-->
-  <div class="row mt-2">
+  <div class="row mt-3">
    <p><% "id: #{@user.id}" %></p>
-   <div class="col-2"><p><%= link_to "フォロー数: #{@user.follower.count}", follows_user_path(@user.id) %></p></div>
-   <div class="col-2"><p><%= link_to "フォロワー数: #{@user.followed.count}", followers_user_path(@user.id) %></p></div>
+   <div class="col-3"><h5><%= link_to "フォロー数: #{@user.follower.count}", follows_user_path(@user.id), class: "text-dark" %></h5></div>
+   <div class="col-3"><h5><%= link_to "フォロワー数: #{@user.followed.count}", followers_user_path(@user.id), class: "text-dark" %></h5></div>
    <% unless @user.id == current_user.id %>
    <% if current_user.following?(@user) %>
      <%= link_to "Delete", user_relationships_path(@user.id), method: :delete, class: "btn-social-long-insta" %>
@@ -18,8 +18,8 @@
    <% end %>
   </div>
 
-  <div class="mt-4"><p>旅行計画投稿一覧</p></div>
+  <div class="mt-5"><h5>旅行計画投稿一覧</h5></div>
   <% @trip_plans.each do |t| %>
-   <div class="row mt-3">・<%=link_to t.title_name, trip_plan_path(t.id) %></div>
+   <div class="row mt-4">・<%=link_to t.title_name, trip_plan_path(t.id), class: "text-dark" %></div>
   <% end %>
 </div>

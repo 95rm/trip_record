@@ -14,7 +14,7 @@
    <div class="row mb-5">
     <%= f.text_area :review %>
     <div class="ml-3">
-     <%= f.submit "投稿", class: "btn btn-primary" %>
+     <%= f.submit "投稿", class: "yellow-btn text-dark" %>
     </div>
    </div>
   <% end %>
@@ -32,7 +32,7 @@
 
 <% if @trip_plan_detail.trip_plan.user_id == current_user.id %>
     <div class="row row justify-content-start">
-     <%= link_to "変更", edit_trip_plan_detail_reviews_path, class: "btn btn-success ml-1" %>
+     <%= link_to "変更", edit_trip_plan_detail_reviews_path, class: "white-btn text-dark ml-1" %>
     </div>
 <% end %>
 

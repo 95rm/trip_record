@@ -60,3 +60,5 @@ gem 'devise'
 gem 'ransack'
 
 gem 'nested_form_fields'
+
+gem 'kaminari'
