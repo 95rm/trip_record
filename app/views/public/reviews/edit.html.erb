@@ -1,17 +1,20 @@
 <div class="container">
  <%= form_with model: @review, url: trip_plan_detail_reviews_path, method: :patch do |f| %>
+
   <h4>・投稿写真</h4>
   <%= image_tag @review.get_image(300,300) %>
   <%= f.file_field :image, accept: "image/*" %>
 
-  <div class="row mt-5"><h4>・レビュー内容</h4></div>
+  <div class="mt-5">
+   <h4>・レビュー内容</h4>
+  </div>
   <div class="row">
    <%= f.text_area :review %>
+   <div class="ml-3">
+    <%= f.submit '更新', class: "yellow-btn text-dark" %>
+   </div>
   </div>
 
-  <div class="row mt-2">
-   <%= f.submit '更新', class: "yellow-btn text-dark" %>
-  </div>
  <% end %>
 
 <div class="row mt-2 justify-content-center">

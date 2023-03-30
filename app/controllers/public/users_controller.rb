@@ -1,7 +1,7 @@
 class Public::UsersController < ApplicationController
 
   def index
-    @trip_plans = TripPlan.published.page(params[:page]).per(1)
+    @trip_plans = TripPlan.published.page(params[:page]).per(7)
   end
 
   def show
@@ -22,7 +22,7 @@ class Public::UsersController < ApplicationController
 
   def my_page
     @user = current_user
-    @trip_plans =  @user.trip_plans.page(params[:page]).per(1)
+    @trip_plans =  @user.trip_plans.page(params[:page]).per(15)
   end
 
   def likes

@@ -1,46 +1,51 @@
 <div class="container">
+  
+  <h2><b>Detail Plan Input</b></h2>
 
+ <div class="mb-5">
   <% if @trip_plan_detail.errors.any? %>
-  <%= @trip_plan_detail.errors.count %>件のエラーが発生しました
-  <ul>
-    <% @trip_plan_detail.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
+   <div class="text-red">※<%= @trip_plan_detail.errors.count %>件の未入力の項目があります</div>
   <% end %>
+ </div>
 
   <%= form_with model: @trip_plan_detail, url: trip_plan_trip_plan_details_path, method: :post do |f| %>
-  <div class="row justify-content-center">
-    <div><p>時間</p></div>
-    <div class="col-8"><%= f.time_field :hour %></div>
+  <div class="form-group mb-4">
+    <div class="row">
+      <b>・時間</b><div class="text-red">※必須</div>
+    </div>
+    <div class="col-8"><%= f.time_field :hour %>　～　</div>
   </div>
 
-  <div class="row justify-content-center">
-    <div><p>カテゴリー</p></div>
+  <div class="form-group mb-4">
+    <div class="row">
+      <b>・カテゴリー</b><div class="text-red">※必須</div>
+    </div>
     <div class="col-7"><%= f.select :category, [["食事","食事"], ["移動","移動"], ["遊び","遊び"], ["ホテル","ホテル"]] %></div>
   </div>
 
-  <div class="row justify-content-center">
-    <div><p>日数</p></div>
-    <div class="col-7"><%= f.number_field :what_day %>日目</div>
+  <div class="form-group mb-4">
+    <div class="row">
+      <b>・日数</b><div class="text-red">※必須</div>
+    </div>
+    <div class="col-7"><%= f.number_field :what_day, class: "col-3 hoge", min: 0, placeholder: '例）3' %>日目</div>
   </div>
 
-  <div class="row justify-content-center">
-    <div><p>目的地</p></div>
-    <div class="col-7"><%= f.text_field :destination %></div>
+  <div class="form-group mb-4">
+    <div class="row">
+      <b>・目的地</b><div class="text-red">※必須</div>
+    </div>
+    <div class="col-12"><%= f.text_field :destination, class: "col-7", placeholder: '例）スカイツリー' %></div>
   </div>
 
-  <div class="row justify-content-center">
-    <div><p>予算</p></div>
-    <div class="col-7"><%= f.text_field :price %>円</div>
+  <div class="form-group mb-4">
+    <div class="row">
+      <b>・予算</b><div class="text-red">※必須</div>
+    </div>
+    <div class="col-12"><%= f.text_field :price, class: "col-2", placeholder: '例）100000' %>円</div>
   </div>
 
   <div class="row justify-content-center"><%= f.submit '登録', class: "yellow-btn text-dark" %></div>
 
   <% end %>
-
-  <div class="row justify-content-end text-red">
-   <P><b>※目的地を１つ入力してください</b><p>
-  </div>
 
 </div>

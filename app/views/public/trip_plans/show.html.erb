@@ -29,17 +29,17 @@
 
 <div class="row">
    <p><b>旅の予算：</b></p>
-   <div class="col-3"><%= @trip_plan.budget %>円</div>
+   <div class="col-3"><%= @trip_plan.budget.to_s(:delimited) %>円</div>
 
    <p><b>合計金額：</b></p>
    <% @total = 0 %>
    <% @trip_plan_details.each do |f| %>
     <% @total += f.price %>
    <% end %>
-   <div class="col-3"><%= @total %>円</div>
+   <div class="col-3"><%= @total.to_s(:delimited) %>円</div>
 
    <p><b>残金：</b></p>
-   <div class="col-3"><%= @calculation_result = @trip_plan.budget - @total %>円</div>
+   <div class="col-3"><%= (@calculation_result = @trip_plan.budget - @total).to_s(:delimited) %>円</div>
 </div>
 
 <div class="row">
@@ -52,16 +52,35 @@
  <div class="col-3"><%= @trip_plan.number_day %>日間の旅</div>
 </div>
 
-<% if @trip_plan.user == current_user %>
 <div class="row justify-content-end">
+<% if @trip_plan.user == current_user %>
  <div class=" mr-2">
   <%= link_to "編集", edit_trip_plan_path, class: "blue-btn text-dark" %>
  </div>
+ <div class="mr-5">
   <%= link_to "削除", trip_plan_path(@trip_plan.id), method: :delete, class: "red-btn text-dark", "data-confirm" => "本当に消しますか？" %>
-</div>
+ </div>
 <% end %>
 
- <table class="table mt-5">
+<!--投稿の公開・非公開機能実装コード!-->
+<% if @trip_plan.user == current_user %>
+ <%= form_with model: @trip_plan, url: trip_plan_path(@trip_plan.id), method: :patch do |f| %>
+  <div class="row justify-content-end">
+   <div class="mr-1">
+    <b><%= f.label :status, "公開", value: true %></b>
+    <%= f.radio_button :status, 'true' %>
+   </div>
+   <div class="mr-1">
+    <b><%= f.label :status, "非公開", value: false %> </b>
+    <%= f.radio_button :status,'false' %>
+   </div>
+    <%= f.submit "更新", class: "yellow-btn text-dark" %>
+  </div>
+ <% end %>
+<% end %>
+</div>
+
+ <table>
    <thead>
      <tr>
        <th>何日目</th>
@@ -70,8 +89,8 @@
        <th>場所</th>
        <th></th>
        <% if @trip_plan.user == current_user %>
-       <th>変更ボタン</th>
-       <th>削除</th>
+       <th></th>
+       <th></th>
        <% end %>
      </tr>
    </thead>
@@ -114,24 +133,13 @@
    <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment_content %>
   <% end %>
  </div>
- <div>
+ <div class="row mb-5">
   <%= form_with model: [@trip_plan, @comment] do |f| %>
     <%= f.text_area :comment_content, rows: '5', placeholder: "コメントをここに" %>
-    <%= f.submit "投稿", class: "yellow-btn text-dark" %>
+    <div class="mr-3">
+     <%= f.submit "投稿", class: "yellow-btn text-dark" %>
+    </div>
   <% end %>
  </div>
-
-<!--投稿の公開・非公開機能実装コード!-->
-<% if @trip_plan.user == current_user %>
- <%= form_with model: @trip_plan, url: trip_plan_path(@trip_plan.id), method: :patch do |f| %>
-  <div class="row justify-content-end">
-    <b><%= f.label :status, "公開", value: true %></b>
-    <%= f.radio_button :status, 'true' %>
-     <b><%= f.label :status, "非公開", value: false %> </b>
-    <%= f.radio_button :status,'false' %>
-    <%= f.submit "更新", class: "yellow-btn text-dark" %>
-  </div>
- <% end %>
-<% end %>
 
 </div>

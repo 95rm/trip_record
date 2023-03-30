@@ -1,15 +1,17 @@
 <div class="container">
-  <h3><b>レビュー</b><h3>
+
+ <h2><b>Reviwe</b></h2>
 
  <% if @trip_plan_detail.trip_plan.user_id == current_user.id %><!--子モデルから親モデルに戻りidを取得している!-->
   <%= form_with model: Review.new, url: trip_plan_detail_reviews_path, method: :post do |f| %>
-   <div class="row mb-5">
-    <p>・写真</p>
+
+   <div class="mt-5">
+    <b>・写真を選択してください</b>
     <%= f.file_field :image, accept: "image/*" %><!--画像のみ投稿可!-->
    </div>
 
-   <div class="row mt-3">
-    <p>・レビュー記入枠</p>
+   <div class="mt-3">
+    <b>・レビュー記入</b>
    </div>
    <div class="row mb-5">
     <%= f.text_area :review %>
@@ -20,20 +22,30 @@
   <% end %>
  <% end %>
 
- <p>・投稿写真</p>
+<div>
+ <b>・投稿写真</b>
+ <div>
   <% if @review.nil? %>
   <%= image_tag 'no_image.jpg' %>
   <% else %>
   <%= image_tag @review.get_image(300,300) %>
   <% end %>
+ </div>
+</div>
 
- <p>・レビュー内容</p>
- <%= @review.try(:review) %>
+<div class="mt-3">
+ <b>・レビュー内容</b>
+ <div>
+  <%= @review.try(:review) %>
+ </div>
+</div>
 
-<% if @trip_plan_detail.trip_plan.user_id == current_user.id %>
-    <div class="row row justify-content-start">
-     <%= link_to "変更", edit_trip_plan_detail_reviews_path, class: "white-btn text-dark ml-1" %>
-    </div>
-<% end %>
+<div class="row justify-content-center">
+ <% if @trip_plan_detail.trip_plan.user_id == current_user.id %>
+     <div class="row row justify-content-start">
+      <%= link_to "変更", edit_trip_plan_detail_reviews_path, class: "white-btn text-dark ml-1" %>
+     </div>
+ <% end %>
+</div>
 
 </div>

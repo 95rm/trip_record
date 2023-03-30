@@ -1,39 +1,48 @@
 <div class="container">
+ 
+ <h2><b>Plan Input</b></h2>
 
+ <div class="mb-5">
   <% if @trip_plan.errors.any? %>
-    <%= @trip_plan.errors.count %>件のエラーが発生しました
-    <ul>
-      <% @trip_plan.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
+    <div class="text-red">※<%= @trip_plan.errors.count %>件の未入力の項目があります</div>
   <% end %>
+ </div>
 
   <%= form_with model: @trip_plan, url: trip_plans_path, method: :post do |t| %> <%#=form_withのURLとメソッドはmodelに情報が入っているか入っていないかでrailsが勝手に判断してcreateかupdateの判断をしてくれるから記述時なくてもよい%>
 
-   <div class="row justify-content-center mb-3">
-     <p>旅行のタイトル</p>
-     <div class="col-8"><%= t.text_field :title_name %></div>
+   <div class="form-group mb-4">
+     <div class="row">
+      <b>・旅行のタイトル</b><div class="text-red">※必須</div>
+     </div>
+     <div class="col-12"><%= t.text_field :title_name, class: "col-8", placeholder: '例）東京観光' %></div>
    </div>
 
-   <div class="row justify-content-center mb-3">
-     <p>日程</p>
-     <div class="col-7"><%= t.date_field :first_day %> ～ <%= t.date_field :second_day %></div>
+   <div class="form-group mb-4">
+     <div class="row">
+      <b>・日程</b><div class="text-red">※必須</div>
+     </div>
+     <div class="col-5"><%= t.date_field :first_day %> ～ <%= t.date_field :second_day %></div>
    </div>
 
-   <div class="row justify-content-center mb-3">
-     <p>期間</p>
-     <div class="col-7"><%= t.number_field :number_day, class: "col-2 hoge", min: 0 %>日間</div>
+   <div class="form-group mb-4">
+     <div class="row">
+      <b>・期間</b><div class="text-red">※必須</div>
+     </div>
+     <div class="col-5"><%= t.number_field :number_day, class: "col-3 hoge", min: 0, placeholder: '例）3' %>日間</div>
    </div>
 
-   <div class="row justify-content-center mb-3">
-     <p>予算</p>
-     <div class="col-7"><%= t.text_field :budget %>円</div>
+   <div class="form-group mb-4">
+     <div class="row">
+      <b>・予算</b><div class="text-red">※必須</div>
+     </div>
+     <div class="col-12"><%= t.text_field :budget, class: "col-2", placeholder: '例）100000' %>円</div>
    </div>
 
-   <div class="row justify-content-center mb-3">
-     <p>タグ</p>
-     <div class="col-7"><%= t.text_field :name_tag, class: "col-5" %></div>
+   <div class="form-group mb-4">
+     <div class="row">
+      <b>・タグ</b>
+     </div>
+     <div class="col-12"><%= t.text_field :name_tag, class: "col-8", placeholder: '例）東京　浅草' %></div>
    </div>
 
    <div class="row justify-content-center">
