@@ -2,7 +2,7 @@
 
  <h2><b>Followers(<%= (@user.account_name) %>)</b></h2>
 
- <% @user.follower_user.each do |user| %>
+ <% @follower_users.each do |user| %>
   <div class="row mt-4">
    <div class="mr-4">
     アカウント名：<%= link_to "#{user.account_name}", user_path(user.id), class: "text-dark" %>

@@ -1,42 +1,43 @@
 class Public::UsersController < ApplicationController
+ before_action :set_user, only: [:show, :likes, :follows, :followers]
+ before_action :set_current_user, only: [:edit, :update, :my_page, :withdraw]
+ before_action :reject_deleted_user, only: [:show, :likes, :follows, :followers, :edit, :update, :my_page, :withdraw]
 
   def index
-    @trip_plans = TripPlan.published.page(params[:page]).per(7)
+    @trip_plans = TripPlan.active_user_trips.published.page(params[:page]).per(7)
   end
 
   def show
-    @user = User.find(params[:id])
     @trip_plans =  @user.trip_plans
+    @following_users = @user.following_users.actives
+    @follower_users = @user.follower_users.actives
     #byebug
   end
 
   def edit
-    @user = current_user
   end
 
   def update
-    @user = current_user
     @user.update(user_params)
     redirect_to users_my_page_path
   end
 
   def my_page
-    @user = current_user
     @trip_plans =  @user.trip_plans.page(params[:page]).per(15)
+    @following_users = @user.following_users.actives
+    @follower_users = @user.follower_users.actives
   end
 
   def likes
-    @user = User.find(params[:id])
-    @likes = Like.where(user_id: @user.id).pluck(:trip_plan_id)
-    @like_trip_plan = TripPlan.find(@likes)
+    @like_trip_plans = @user.like_trip_plans.active_user_trips
   end
 
   def follows
-    @user = User.find(params[:id])
+    @following_users = @user.following_users.actives
   end
 
   def followers
-    @user = User.find(params[:id])
+    @follower_users = @user.follower_users.actives
   end
 
   def stop
@@ -44,7 +45,6 @@ class Public::UsersController < ApplicationController
 
   #退会
   def withdraw
-    @user = current_user
     @user.update(is_deleted: true)
     reset_session
     redirect_to root_path
@@ -56,4 +56,15 @@ class Public::UsersController < ApplicationController
     params.require(:user).permit(:account_name, :email, :encrypted_password, :is_deleted)
   end
 
+  def set_user
+    @user = User.find(params[:id])
+  end
+
+  def set_current_user
+    @user = current_user
+  end
+
+  def reject_deleted_user
+    redirect_to root_url if @user.is_deleted?
+  end
 end

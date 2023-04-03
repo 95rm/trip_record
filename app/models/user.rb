@@ -7,14 +7,17 @@ class User < ApplicationRecord
 
   has_one_attached :profile_image
 
-  has_many :trip_plans
+  scope :actives, -> { where(is_deleted: false) }
+
+  has_many :trip_plans, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :like_trip_plans, through: :likes, source: :trip_plan
   has_many :comments, dependent: :destroy
 
   has_many :follower, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :followed, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
-  has_many :following_user, through: :follower, source: :followed #自分がフォローしている人
-  has_many :follower_user, through: :followed, source: :follower #自分をフォローしている人
+  has_many :following_users, through: :follower, source: :followed, dependent: :destroy #自分がフォローしている人
+  has_many :follower_users, through: :followed, source: :follower, dependent: :destroy #自分をフォローしている人
 
   #ユーザーをフォローする
   def follow(user_id)
@@ -28,7 +31,7 @@ class User < ApplicationRecord
 
   #フォローしていればtrueを返す
   def following?(user)
-    following_user.include?(user)
+    following_users.include?(user)
   end
 
   #プロフィール画像

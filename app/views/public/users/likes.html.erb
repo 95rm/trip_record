@@ -1,7 +1,7 @@
 <div class="container">
   <h2><b>Likes List</b></h2>
 
-    <% @like_trip_plan.each do |likes| %>
+    <% @like_trip_plans.each do |likes| %>
     <div class="row mt-4">
      ・<%=link_to likes.title_name, trip_plan_path(likes.id), class: "text-dark" %>
      </div>

@@ -7,8 +7,8 @@
   <!--フォロー・フォロワー機能!-->
   <div class="row mt-3">
    <p><% "id: #{@user.id}" %></p>
-   <div class="col-3"><h5><%= link_to "フォロー数: #{@user.follower.count}", follows_user_path(@user.id), class: "text-dark" %></h5></div>
-   <div class="col-3"><h5><%= link_to "フォロワー数: #{@user.followed.count}", followers_user_path(@user.id), class: "text-dark" %></h5></div>
+   <div class="col-3"><h5><%= link_to "フォロー数: #{@following_users.count}", follows_user_path(@user.id), class: "text-dark" %></h5></div>
+   <div class="col-3"><h5><%= link_to "フォロワー数: #{@follower_users.count}", followers_user_path(@user.id), class: "text-dark" %></h5></div>
    <% unless @user.id == current_user.id %>
    <% if current_user.following?(@user) %>
      <%= link_to "Delete", user_relationships_path(@user.id), method: :delete, class: "btn-social-long-insta" %>

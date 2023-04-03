@@ -1,4 +1,5 @@
 class Public::TripPlansController < ApplicationController
+  before_action :reject_deleted_users_plan, only: [:show, :edit, :update, :destroy]
 
   def new
     @trip_plan = TripPlan.new
@@ -17,7 +18,6 @@ class Public::TripPlansController < ApplicationController
   end
 
   def show
-    @trip_plan = TripPlan.find(params[:id])
     if @trip_plan.user_id != current_user.id && !@trip_plan.status
       redirect_to users_my_page_path
       return
@@ -36,11 +36,9 @@ class Public::TripPlansController < ApplicationController
   end
 
   def edit
-    @trip_plan = TripPlan.find(params[:id])
   end
 
   def update
-    @trip_plan = TripPlan.find(params[:id]) #idで保存したいデータを呼び出す
     if @trip_plan.update(trip_plan_params) #trip_planのデータを保存する
       if params[:trip_plan][:tag_list_to_s]
         @trip_plan.save_tag(params[:trip_plan][:tag_list_to_s]) #タグのデータを保存する
@@ -52,7 +50,6 @@ class Public::TripPlansController < ApplicationController
   end
 
   def destroy
-    @trip_plan = TripPlan.find(params[:id])
     @trip_plan.destroy
     redirect_to users_my_page_path
   end
@@ -62,4 +59,8 @@ class Public::TripPlansController < ApplicationController
     params.require(:trip_plan).permit(:user_id, :title_name, :first_month, :first_day, :second_month, :second_day, :number_day, :budget, :status)
   end
 
+  def reject_deleted_users_plan
+    @trip_plan = TripPlan.find(params[:id])
+    redirect_to root_url if @trip_plan.user.is_deleted?
+  end
 end

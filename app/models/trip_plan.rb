@@ -2,6 +2,11 @@ class TripPlan < ApplicationRecord
   attribute :tag_list_to_s
   has_one_attached :image
 
+  scope :active_user_trips, -> { includes(:user).where(user: { is_deleted: false }) }
+  #投稿の公開・非公開機能実装コード
+  scope :published, -> {where(status: true)}
+  scope :unpublished, -> {where(status: false)}
+
   belongs_to :user
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -47,9 +52,4 @@ class TripPlan < ApplicationRecord
  def favorited_by?(user)
   likes.exists?(user_id: user.id)
  end
-
- #投稿の公開・非公開機能実装コード
- scope :published, -> {where(status: true)}
- scope :unpublished, -> {where(status: false)}
-
 end
