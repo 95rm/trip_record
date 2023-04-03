@@ -1,7 +1,7 @@
 <div class="container">
 <h3><b>ユーザー一覧画面</b></h3>
 
-  <table class="table">
+  <table>
    <thead>
     <tr>
      <th>ユーザー名</th>
@@ -13,9 +13,9 @@
     <tr>
      <td><%= link_to u.account_name, admin_user_path(u.id) %></td>
      <td><% if u.is_deleted == true %>
-          <p class="text-secondary">退会</p>
+          <p class="text-secondary"><b>退会</b></p>
          <% else u.is_deleted == false %>
-          <p class="text-success">有効</p>
+          <p class="text-success"><b>有効</b></p>
          <% end %>
      </td>
     </tr>

@@ -103,7 +103,7 @@
        <td> <%= t.destination %></td>
        <td><%= link_to "レビュー", trip_plan_detail_reviews_path(t), class: "blue-btn text-dark" %></td>
        <% if @trip_plan.user == current_user %>
-       <td><%= link_to "変更", edit_trip_plan_trip_plan_detail_path(t.trip_plan_id, t.id), class: "white-btn text-dark" %>
+       <td><%= link_to "変更", edit_trip_plan_trip_plan_detail_path(t.trip_plan_id, t.id), class: "white-btn text-dark ml-3" %></td>
        <td><%= link_to "削除", trip_plan_trip_plan_detail_path(t.trip_plan_id, t.id), method: :delete, class: "red-btn text-dark" %></td>
        <% end %>
      </tr>
@@ -118,13 +118,13 @@
  </table>
 
 <% if @trip_plan.user == current_user %>
- <div class="row justify-content-end">
+ <div class="row justify-content-end mt-2">
   <%= link_to "追加", new_trip_plan_trip_plan_detail_path(@trip_plan.id), class: "yellow-btn text-dark" %>
  </div>
 <% end %>
 
  <!--コメント機能実装コード!-->
- <div>
+ <div class="mt-5">
   <p><b>コメント件数：</b><%= @trip_plan.comments.count %></p>
  <div>
   <% @comments.each do |comment| %>

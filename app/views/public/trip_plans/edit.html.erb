@@ -3,32 +3,42 @@
   <%= form_with model: @trip_plan, url: trip_plan_path, method: :patch do |t| %>
 
   <div class="form-group mb-4">
-     <p>・旅行のタイトル</p>
+     <div class="row">
+      <b>・旅行のタイトル</b><div class="text-red">※必須</div>
+     </div>
      <div class="col-12"><%= t.text_field :title_name, class: "col-8" %></div>
    </div>
 
    <div class="form-group mb-4">
-     <p>・日程</p>
+     <div class="row">
+      <b>・日程</b><div class="text-red">※必須</div>
+     </div>
      <div class="col-5"><%= t.date_field :first_day %> ～ <%= t.date_field :second_day %></div>
    </div>
 
    <div class="form-group mb-4">
-     <p>・期間</p>
+     <div class="row">
+      <b>・期間</b><div class="text-red">※必須</div>
+     </div>
      <div class="col-5"><%= t.number_field :number_day, class: "col-3 hoge", min: 0 %>日間</div>
    </div>
 
    <div class="form-group mb-4">
-     <p>・予算</p>
+     <div class="row">
+      <b>・予算</b><div class="text-red">※必須</div>
+     </div>
      <div class="col-12"><%= t.text_field :budget, class:"col-2" %>円</div>
    </div>
 
    <div class="form-group mb-4">
-     <p>・タグ</p>
+     <div class="row">
+      <b>・タグ</b>
+     </div>
      <div class="col-12"><%= t.text_field :tag_list_to_s, class:"col-8" %></div>
    </div>
 
    <div class="row justify-content-center">
-     <%= t.submit '次へ', class: "yellow-btn text-dark" %>
+     <%= t.submit '登録', class: "yellow-btn text-dark" %>
    </div>
 
   <% end %>

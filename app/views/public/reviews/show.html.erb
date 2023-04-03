@@ -40,12 +40,12 @@
  </div>
 </div>
 
-<div class="row justify-content-center">
+<div class="row justify-content-around">
  <% if @trip_plan_detail.trip_plan.user_id == current_user.id %>
-     <div class="row row justify-content-start">
-      <%= link_to "変更", edit_trip_plan_detail_reviews_path, class: "white-btn text-dark ml-1" %>
-     </div>
+  <%= link_to "変更", edit_trip_plan_detail_reviews_path, class: "white-btn text-dark ml-1" %>
  <% end %>
+ <%= link_to "戻る", trip_plan_path(@trip_plan_detail.trip_plan_id), class: "white-btn text-dark ml-1" %>
 </div>
+
 
 </div>

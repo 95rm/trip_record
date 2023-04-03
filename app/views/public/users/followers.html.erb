@@ -1,16 +1,18 @@
 <div class="container">
 
- <h2><b>Followers</b></h2>
+ <h2><b>Followers(<%= (@user.account_name) %>)</b></h2>
 
  <% @user.follower_user.each do |user| %>
   <div class="row mt-4">
    <div class="mr-4">
     アカウント名：<%= link_to "#{user.account_name}", user_path(user.id), class: "text-dark" %>
    </div>
+    <% unless user.id == current_user.id %>
     <% if current_user.following?(user) %>
      <%= link_to 'Delete', user_relationships_path(user.id), method: :delete, class: "btn-social-long-insta" %>
     <% else %>
      <%= link_to 'Follow Me', user_relationships_path(user.id), method: :POST, class: "btn-social-long-insta" %>
+    <% end %>
     <% end %>
   </div>
  <% end %>
