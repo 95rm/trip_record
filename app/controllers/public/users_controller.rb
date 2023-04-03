@@ -56,6 +56,7 @@ class Public::UsersController < ApplicationController
     params.require(:user).permit(:account_name, :email, :encrypted_password, :is_deleted)
   end
 
+  #コントローラーの中でのみ使用するメソッドのためprivate以下に記述する
   def set_user
     @user = User.find(params[:id])
   end

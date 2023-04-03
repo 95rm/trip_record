@@ -1,5 +1,6 @@
 class Public::TripPlansController < ApplicationController
   before_action :reject_deleted_users_plan, only: [:show, :edit, :update, :destroy]
+  before_action :is_matching_login_user, only: [:edit, :update]
 
   def new
     @trip_plan = TripPlan.new
@@ -59,8 +60,17 @@ class Public::TripPlansController < ApplicationController
     params.require(:trip_plan).permit(:user_id, :title_name, :first_month, :first_day, :second_month, :second_day, :number_day, :budget, :status)
   end
 
+#コントローラーの中でのみ使用するメソッドのためprivate以下に記述する
   def reject_deleted_users_plan
     @trip_plan = TripPlan.find(params[:id])
     redirect_to root_url if @trip_plan.user.is_deleted?
   end
+
+  def is_matching_login_user
+    @trip_plan = TripPlan.find(params[:id])
+    unless @trip_plan.user.account_name == current_user.account_name
+      redirect_to users_my_page_path
+    end
+  end
+
 end
