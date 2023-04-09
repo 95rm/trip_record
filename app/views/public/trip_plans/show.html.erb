@@ -1,84 +1,97 @@
 <div class="container">
+ <div class="font-title mt-5 mb-5">
+  <h1><b>Post</b></h1>
+ </div>
 
- <div class="row">
+ <div class="row mt-4">
   <p><b>アカウント名：</b></p>
-  <div class="col-3"><%= link_to @user.account_name, user_path(@user), class: "text-dark" %></div>
+  <div class="col-3">
+   <% if @trip_plan.user == current_user %>
+    <%= link_to @user.account_name, users_my_page_path, class: "text-dark" %>
+   <% else %>
+    <%= link_to @user.account_name, user_path(@user), class: "text-dark" %>
+   <% end %>
+  </div>
+
+   <!--いいね機能実装!-->
+  <% if @trip_plan.favorited_by?(current_user) %>
+   <p>
+    <%= link_to trip_plan_likes_path(@trip_plan), method: :delete do %>
+     ♥ : <%= @trip_plan.likes.count %>
+    <% end %>
+   </p>
+  <% else %>
+   <p>
+    <%= link_to trip_plan_likes_path(@trip_plan), method: :post do %>
+     ♡ : <%= @trip_plan.likes.count %>
+    <% end %>
+   </p>
+  <% end %>
+
  </div>
 
  <div class="row">
-  <p><b>旅行タイトル：</b></p>
-  <div class="col-3"><%= @trip_plan.title_name %>
+   <p><b>旅行タイトル：</b></p>
+   <div class="col-3"><%= @trip_plan.title_name %>
+  </div>
  </div>
 
- <!--いいね機能実装!-->
- <% if @trip_plan.favorited_by?(current_user) %>
-  <p>
-   <%= link_to trip_plan_likes_path(@trip_plan), method: :delete do %>
-    ♥ : <%= @trip_plan.likes.count %>
-   <% end %>
-  </p>
-  <% else %>
-  <p>
-   <%= link_to trip_plan_likes_path(@trip_plan), method: :post do %>
-    ♡ : <%= @trip_plan.likes.count %>
-   <% end %>
-  </p>
- <% end %>
+ <div class="row">
+  <p><b>旅の予算：</b></p>
+  <div class="col-3"><%= @trip_plan.budget.to_s(:delimited) %>円</div>
 
-</div>
+  <p><b>現在の総額：</b></p>
+  <% @total = 0 %>
+  <% @trip_plan_details.each do |f| %>
+   <% @total += f.price %>
+  <% end %>
+  <div class="col-3"><%= @total.to_s(:delimited) %>円</div>
 
-<div class="row">
-   <p><b>旅の予算：</b></p>
-   <div class="col-3"><%= @trip_plan.budget.to_s(:delimited) %>円</div>
-
-   <p><b>合計金額：</b></p>
-   <% @total = 0 %>
-   <% @trip_plan_details.each do |f| %>
-    <% @total += f.price %>
-   <% end %>
-   <div class="col-3"><%= @total.to_s(:delimited) %>円</div>
-
-   <p><b>残金：</b></p>
-   <div class="col-3"><%= (@calculation_result = @trip_plan.budget - @total).to_s(:delimited) %>円</div>
-</div>
-
-<div class="row">
- <p><b>日程：</b></p>
- <div class="col-4"><%= @trip_plan.first_day %> ～ <%= @trip_plan.second_day %></div>
-</div>
-
-<div class="row">
- <p><b>日数：</b></p>
- <div class="col-3"><%= @trip_plan.number_day %>日間の旅</div>
-</div>
-
-<div class="row justify-content-end">
-<% if @trip_plan.user == current_user %>
- <div class=" mr-2">
-  <%= link_to "編集", edit_trip_plan_path, class: "blue-btn text-dark" %>
+  <p><b>残金：</b></p>
+  <div class="col-3"><%= (@calculation_result = @trip_plan.budget - @total).to_s(:delimited) %>円</div>
  </div>
- <div class="mr-5">
-  <%= link_to "削除", trip_plan_path(@trip_plan.id), method: :delete, class: "red-btn text-dark", "data-confirm" => "本当に消しますか？" %>
- </div>
-<% end %>
 
-<!--投稿の公開・非公開機能実装コード!-->
-<% if @trip_plan.user == current_user %>
- <%= form_with model: @trip_plan, url: trip_plan_path(@trip_plan.id), method: :patch do |f| %>
-  <div class="row justify-content-end">
-   <div class="mr-1">
-    <b><%= f.label :status, "公開", value: true %></b>
-    <%= f.radio_button :status, 'true' %>
-   </div>
-   <div class="mr-1">
-    <b><%= f.label :status, "非公開", value: false %> </b>
-    <%= f.radio_button :status,'false' %>
-   </div>
-    <%= f.submit "更新", class: "yellow-btn text-dark" %>
+ <div class="row">
+  <p><b>日程：</b></p>
+  <div class="col-4"><%= @trip_plan.first_day %> ～ <%= @trip_plan.second_day %></div>
+ </div>
+
+ <div class="row">
+  <p><b>日数：</b></p>
+  <div class="col-3"><%= @trip_plan.number_day %>日間の旅</div>
+ </div>
+
+ <div class="row justify-content-end">
+ <% if @trip_plan.user == current_user %>
+  <div class=" mr-2">
+   <%= link_to "編集", edit_trip_plan_path, class: "blue-btn text-dark" %>
+  </div>
+  <div class="mr-5">
+   <%= link_to "削除", trip_plan_path(@trip_plan.id), method: :delete, class: "red-btn text-dark", "data-confirm" => "本当に消しますか？" %>
   </div>
  <% end %>
-<% end %>
-</div>
+
+ <!--投稿の公開・非公開機能実装コード!-->
+ <% if @trip_plan.user == current_user %>
+  <%= form_with model: @trip_plan, url: trip_plan_path(@trip_plan.id), method: :patch do |f| %>
+   <div class="row justify-content-end">
+    <div class="row mt-3">
+     <div class="mr-1">
+      <b><%= f.label :status, "公開", value: true %></b>
+      <%= f.radio_button :status, 'true' %>
+     </div>
+     <div class="mr-1">
+      <b><%= f.label :status, "非公開", value: false %> </b>
+      <%= f.radio_button :status,'false' %>
+     </div>
+    </div>
+    <div class="ml-3">
+     <%= f.submit "更新", class: "yellow-btn text-dark" %>
+    </div>
+   </div>
+  <% end %>
+ <% end %>
+ </div>
 
  <table>
    <thead>
@@ -105,25 +118,35 @@
        <% if @trip_plan.user == current_user %>
        <td><%= link_to "変更", edit_trip_plan_trip_plan_detail_path(t.trip_plan_id, t.id), class: "white-btn text-dark ml-3" %></td>
        <td><%= link_to "削除", trip_plan_trip_plan_detail_path(t.trip_plan_id, t.id), method: :delete, class: "red-btn text-dark" %></td>
+       <td>
+        <div class="mb-2">
+        <label class="my-checkbox">
+         <input type="checkbox">
+         <span class="checkmark"></span>
+        </label>
+        </div>
+       </td>
        <% end %>
      </tr>
    </tbody>
    <% end %>
 
-  <b>tag:</b>
-   <% @trip_plan.tags.each do |tag| %><!--タグを出力!-->
-    <%= link_to tag.name_tag, research_trip_plans_path(tag_name: tag.name_tag), class: "badge badge-success mx-1" %>
-   <% end %>
+   <div class="mt-3">
+    <b>tag:</b>
+    <% @trip_plan.tags.each do |tag| %><!--タグを出力!-->
+     <%= link_to tag.name_tag, research_trip_plans_path(tag_name: tag.name_tag), class: "badge badge-success mx-1" %>
+    <% end %>
+   </div>
 
  </table>
 
-<% if @trip_plan.user == current_user %>
- <div class="row justify-content-end mt-2">
-  <%= link_to "追加", new_trip_plan_trip_plan_detail_path(@trip_plan.id), class: "yellow-btn text-dark" %>
- </div>
-<% end %>
+ <% if @trip_plan.user == current_user %>
+  <div class="row justify-content-end mt-2">
+   <%= link_to "追加", new_trip_plan_trip_plan_detail_path(@trip_plan.id), class: "yellow-btn text-dark" %>
+  </div>
+ <% end %>
 
- <!--コメント機能実装コード!-->
+  <!--コメント機能実装コード!-->
  <div class="mt-5">
   <p><b>コメント件数：</b><%= @trip_plan.comments.count %></p>
  <div>
@@ -135,7 +158,7 @@
  </div>
  <div class="row mb-5">
   <%= form_with model: [@trip_plan, @comment] do |f| %>
-    <%= f.text_area :comment_content, rows: '5', placeholder: "コメントをここに" %>
+   <%= f.text_area :comment_content, rows: '5', placeholder: "コメントをここに" %>
     <div class="mr-3">
      <%= f.submit "投稿", class: "yellow-btn text-dark" %>
     </div>

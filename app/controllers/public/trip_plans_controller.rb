@@ -31,7 +31,7 @@ class Public::TripPlansController < ApplicationController
 
   def research
     #ransackを使った検索機能実装
-    @q = TripPlan.joins(:tags).distinct.ransack(params[:q])
+    @q = TripPlan.left_joins(:tags).joins(:user).where(user: { is_deleted: false }).where(status: true).distinct.ransack(params[:q])
     @trip_plans = @q.result
     @trip_plans = @trip_plans.where('name_tag like ?', "%#{params[:tag_name]}%") if params[:tag_name].present?
   end

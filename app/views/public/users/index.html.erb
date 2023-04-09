@@ -1,9 +1,11 @@
 <div class="container">
-  <h2><b>Posts List</b></h2>
+  <div class="font-title mt-5 mb-5">
+   <h1><b>Posts List</b></h1>
+  </div>
 
   <% @trip_plans.each do |trip_plan| %>
   <div class="row mt-4">
-    ・<%= link_to trip_plan.title_name, trip_plan_path(trip_plan.id), class: "text-dark" %>
+    <h4>・<%= link_to trip_plan.title_name, trip_plan_path(trip_plan.id), class: "text-dark" %></h4>
   </div>
   <% end %>
 

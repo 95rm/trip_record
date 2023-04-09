@@ -1,11 +1,11 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
 
-/*
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
-*/
-
-
+/*フォント*/
+.font-title{
+ font-family: 'Poiret One', cursive;
+}
 /*フォローボタン*/
 .btn-social-long-insta {
   /*ボタンの下地*/
@@ -103,30 +103,30 @@ $curve: linear;
   width: 400px;
   margin: 0 auto;
   text-align: left;
-  margin-top: 5em;
+  margin-top: 80px;
 
   label{
     display: block;
     text-align: left;
     color: dark;
-    font-size: .875em;
+    font-size: 50px;
   }
 
   form{
 
     .text-input{
-      overflow: hidden;
-       margin-bottom: .875em;
+       margin-bottom: 58px;
+       width: 1500px;
     }
 
     input[type="text"],
     input[type="password"]{
       width: 100%;
-      padding: 2em 0 12px;
+      padding: 20px 0 12px;
       padding-left: 0;
       background: none;
       color: dark;
-      font-size: 1em;
+      font-size: 15px;
       font-weight: 400;
       border: none;
       border-bottom: 1px solid $light-gray;
@@ -143,8 +143,8 @@ $curve: linear;
     input[type="submit"]{
       color: white;
       background: $light-blue;
-      padding: 0.8em 1.2em;
-      font-size: 1.2em;
+      padding: 10px 20px;
+      font-size: 15px;
       border:none;
       border-radius: 10px;
     }
@@ -153,7 +153,7 @@ $curve: linear;
 
 .separator {
   height:3px;
-  width: 100%;
+  width: 375px;
   background: $bright-blue;
   display: block;
   transform: scaleX(0) translateY(-2px);
@@ -177,13 +177,13 @@ body {
 
   a {
     color: $light-blue;
-    font-size: 1em;
+    font-size: 15px;
     text-decoration: none;
   }
 }
 
 .form-bottom{
-  margin-top:1.25em;
+  margin-top:1.20px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -193,7 +193,7 @@ body {
 /*青ボタン*/
 .blue-btn {
   display: inline-block;
-  padding: 0.5em 1em;
+  padding: 13px 15px;
   text-decoration: none;
   border-radius: 3px;
   font-weight: bold;
@@ -210,7 +210,7 @@ body {
 /*黄色ボタン*/
 .yellow-btn {
   display: inline-block;
-  padding: 0.5em 1em;
+  padding: 13px 15px;
   text-decoration: none;
   border-radius: 3px;
   font-weight: bold;
@@ -227,7 +227,7 @@ body {
 /*白ボタン*/
 .white-btn {
   display: inline-block;
-  padding: 0.5em 1em;
+  padding: 13px 15px;
   text-decoration: none;
   border-radius: 3px;
   font-weight: bold;
@@ -244,7 +244,7 @@ body {
 //*赤ボタン*/
 .red-btn {
   display: inline-block;
-  padding: 0.5em 1em;
+  padding: 13px 15px;
   text-decoration: none;
   border-radius: 3px;
   font-weight: bold;
@@ -257,9 +257,9 @@ body {
   background-image: linear-gradient(45deg, #FF367F 50%, #FF82B2 100%);
 }
 
-/*背景画像(public/images直下に入れている)*/
+/*背景画像(javascript/images直下に入れている)*/
  body {
-  background-image: url('/images/haikei.jpg'); /*javascript/imagesの直下に画像を入れる場合「../images/haikei.jpg」とする*/
+  background-image: url(../images/haikei.jpg); /*public/imagesの直下に画像を入れる場合「/images/haikei.jpg'」とする*/
   background-size: cover;
   background-color:rgba(255,255,255,0.6);
   background-blend-mode:lighten;
@@ -437,4 +437,55 @@ tbody th {
   table td:last-child {
     border-bottom: 0;
   }
+}
+
+/*チェックボックス*/
+.my-checkbox {
+  display: block;
+  position: relative;
+  margin: 1em 0;
+  padding-left: 28px;
+  cursor: pointer;
+  user-select: none; /* テキストの選択を防ぐ */
+}
+
+/* inputは非表示にする */
+.my-checkbox input {
+  display: none;
+}
+
+/* □ */
+.checkmark {
+  position: absolute;
+  top: -15px; /* 上からの位置 */
+  left: 0;
+  height: 22px; /* 大きさ */
+  width: 22px; /* 大きさ */
+  border: solid 2px #d4dae2; /* 線 */
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+/* ✓ */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  left: 5px; /* チェックの位置 */
+  top: 1px; /* チェックの位置 */
+  width: 6px; /* チェックの大きさ */
+  height: 10px; /* チェックの大きさ */
+  border: solid #FFF;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  opacity: 0; /* 透明にしておく */
+}
+
+/* チェックが入ったときの□ */
+.my-checkbox input:checked + .checkmark {
+  background: #2e80ff; /* チェック時の色 */
+  border-color: #2e80ff; /* チェック時の色 */
+}
+
+/* チェックが入ったときの✓ */
+.my-checkbox input:checked + .checkmark:after {
+  opacity: 1; /* 透明を解除 */
 }

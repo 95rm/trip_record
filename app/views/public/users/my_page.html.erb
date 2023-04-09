@@ -1,10 +1,12 @@
 <div class="container">
-  <h2><b>My page</b></h2>
+  <div class="font-title mt-5 mb-5">
+   <h1><b>My page</b></h1>
+  </div>
 
   <div class="row">
-   <div class="col-2 mt-5"><h4>アカウント名</h4></div>
-   <div class="col-7 mt-5"><h5><%= @user.account_name %></h4></div>
-   <div class="col-3 mt-5"><%= link_to "アカウント名変更", users_information_edit_path, class: "btn-vertical-border" %></div>
+   <div class="col-2 mt-4"><h4>アカウント名</h4></div>
+   <div class="col-7 mt-4"><h4><%= @user.account_name %></h4></div>
+   <div class="col-3 mt-4"><%= link_to "アカウント名変更", users_information_edit_path, class: "btn-vertical-border" %></div>
   </div>
 
   <!--フォロー・フォロワー機能!-->
@@ -17,7 +19,7 @@
   <div class="mt-5"><h5>旅行計画投稿一覧</h5></div>
   <% @trip_plans.each do |t| %>
    <div class="row mt-4">
-     ・<%= link_to t.title_name, trip_plan_path(t.id), class: "text-dark" %>
+    ・<%= link_to t.title_name, trip_plan_path(t.id), class: "text-dark" %>
    </div>
   <% end %>
 

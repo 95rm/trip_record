@@ -4,11 +4,11 @@ class Public::UsersController < ApplicationController
  before_action :reject_deleted_user, only: [:show, :likes, :follows, :followers, :edit, :update, :my_page, :withdraw]
 
   def index
-    @trip_plans = TripPlan.active_user_trips.published.page(params[:page]).per(7)
+    @trip_plans = TripPlan.active_user_trips.published.page(params[:page]).per(8)
   end
 
   def show
-    @trip_plans =  @user.trip_plans
+    @trip_plans =  @user.trip_plans.page(params[:page]).per(8)
     @following_users = @user.following_users.actives
     @follower_users = @user.follower_users.actives
     #byebug
@@ -23,13 +23,13 @@ class Public::UsersController < ApplicationController
   end
 
   def my_page
-    @trip_plans =  @user.trip_plans.page(params[:page]).per(15)
+    @trip_plans =  @user.trip_plans.page(params[:page]).per(8)
     @following_users = @user.following_users.actives
     @follower_users = @user.follower_users.actives
   end
 
   def likes
-    @like_trip_plans = @user.like_trip_plans.active_user_trips
+    @like_trip_plans = @user.like_trip_plans.active_user_trips.page(params[:page]).per(8)
   end
 
   def follows

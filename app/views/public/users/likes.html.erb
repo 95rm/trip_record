@@ -1,12 +1,16 @@
 <div class="container">
-  <h2><b>Likes List</b></h2>
+  <div class="font-title mt-5 mb-5">
+   <h1><b>Likes List</b></h1>
+  </div>
 
-    <% @like_trip_plans.each do |likes| %>
-    <div class="row mt-4">
-     ・<%=link_to likes.title_name, trip_plan_path(likes.id), class: "text-dark" %>
-     </div>
-    <% end %>
+  <% @like_trip_plans.each do |likes| %>
+  <div class="row mt-4">
+   <h4>・<%=link_to likes.title_name, trip_plan_path(likes.id), class: "text-dark" %></h4>
+  </div>
+  <% end %>
 
-
+  <div class="row justify-content-center mt-5">
+   <%= paginate @like_trip_plans %>
+  </div>
 
 </div>
