@@ -26,7 +26,7 @@
  <b>・投稿写真</b>
  <div>
   <% if @review.nil? %>
-  <%= image_tag 'no_image.jpg' %>
+  <%= image_pack_tag 'no_image.jpg' %>
   <% else %>
   <%= image_tag @review.get_image(300,300) %>
   <% end %>
