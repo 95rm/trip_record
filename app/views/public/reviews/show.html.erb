@@ -2,6 +2,12 @@
 
  <h2><b>Reviwe</b></h2>
 
+ <div class="mb-4">
+  <% if @review.errors.any? %>
+   <div class="text-red"><%= @review.errors.count %>件の未入力項目があります</div>
+  <% end %>
+ </div>
+
  <% if @trip_plan_detail.trip_plan.user_id == current_user.id %><!--子モデルから親モデルに戻りidを取得している!-->
   <%= form_with model: Review.new, url: trip_plan_detail_reviews_path, method: :post do |f| %>
 
