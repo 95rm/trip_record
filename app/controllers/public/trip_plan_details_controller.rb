@@ -1,5 +1,5 @@
 class Public::TripPlanDetailsController < ApplicationController
-  before_action :is_matching_login_user, only: [:edit, :update]
+  before_action :is_matching_login_user, only: [:edit, :update, :destroy]
 
   def new
     @trip_plan_detail = TripPlanDetail.new

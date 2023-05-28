@@ -162,10 +162,6 @@ $curve: linear;
   transition: all .15s $curve;
 }
 
-/**
-* Form Reset - remove focus highlighting
-*/
-
 * :focus {
   outline-color: transparent;
   outline-style: none;

@@ -1,6 +1,6 @@
 class Public::TripPlansController < ApplicationController
   before_action :reject_deleted_users_plan, only: [:show, :edit, :update, :destroy]
-  before_action :is_matching_login_user, only: [:edit, :update]
+  before_action :is_matching_login_user, only: [:edit, :update, :destroy]
 
   def new
     @trip_plan = TripPlan.new

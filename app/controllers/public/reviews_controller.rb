@@ -9,9 +9,11 @@ class Public::ReviewsController < ApplicationController
     #byebug
     @review = Review.new(review_params)
     @review.trip_plan_detail_id = params[:trip_plan_detail_id]
+    @trip_plan_detail = TripPlanDetail.find(params[:trip_plan_detail_id])
     if @review.save
       redirect_to trip_plan_detail_reviews_path
     else
+      # @review.get_image(300,300)
       render :show
     end
   end

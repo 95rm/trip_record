@@ -3,7 +3,7 @@
  <h2><b>Reviwe</b></h2>
 
  <div class="mb-4">
-  <% if @review.errors.any? %>
+  <% if @review.present? && @review.errors.any? %>
    <div class="text-red"><%= @review.errors.count %>件の未入力項目があります</div>
   <% end %>
  </div>
