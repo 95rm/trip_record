@@ -116,7 +116,6 @@ $curve: linear;
 
     .text-input{
        margin-bottom: 58px;
-       width: 1500px;
     }
 
     input[type="text"],
@@ -153,7 +152,7 @@ $curve: linear;
 
 .separator {
   height:3px;
-  width: 375px;
+  width: 100%;/*px→%に変更*/
   background: $bright-blue;
   display: block;
   transform: scaleX(0) translateY(-2px);

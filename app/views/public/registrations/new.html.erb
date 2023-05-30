@@ -5,13 +5,13 @@
 
     <div class="text-input">
       <label for="username"><h5><b>・User Name</b></h5></label>
-      <%= f.text_field :account_name, autofocus: true, autocomplete: "account_name", class: "col-3", placeholder: "User Name" %>
+      <%= f.text_field :account_name, autofocus: true, autocomplete: "account_name", class: "col-12", placeholder: "User Name" %>
       <span class="separator"> </span>
     </div>
 
     <div class="text-input">
       <label for="email"><h5><b>・E-mail</b></h5></label>
-      <%= f.text_field :email, autofocus: true, autocomplete: "email", class: "col-3", placeholder: "E-mail" %>
+      <%= f.text_field :email, autofocus: true, autocomplete: "email", class: "col-12", placeholder: "E-mail" %>
       <span class="separator"> </span>
     </div>
 
@@ -20,13 +20,13 @@
       <%# if @minimum_password_length %>
       <em><%#= @minimum_password_length %></em>
       <%# end %>
-      <%= f.password_field :password, autocomplete: "new-password", class: "col-3", placeholder: "password" %>
+      <%= f.password_field :password, autocomplete: "new-password", class: "col-12", placeholder: "password" %>
       <span class="separator"> </span>
     </div>
 
     <div class="text-input">
       <label for="psssword"><h5><b>・Password(確認用)</b></h5></label>
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "col-3", placeholder: "password" %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "col-12", placeholder: "password" %>
       <span class="separator"> </span>
     </div>
 
